@@ -1,5 +1,51 @@
 fort_arrange
-============
 
-Fortran module for the arrangement of numeric arrays and matrices
+================================================================================
+Summary
+--------------------------------------------------------------------------------
+Fortran module for the arrangement of numeric arrays and matrices.  This module
+is still in early development and comments and feedback are welcomed.
+================================================================================
 
+================================================================================
+Notes
+--------------------------------------------------------------------------------
+Requires BLAS to compile.  If you do not have a BLAS implementation a non
+optimized version can be found at www.netlib.org/blas/.  For free optimized
+implementations consider ATLAS (math-atlas.sourceforge.net/) or OpenBLAS
+(xianyi.github.com/OpenBLAS/).
+
+Currently supports the following data types:
+  * integer
+  * real
+  * double precision
+
+Has been tested on current versions of gfortran and ifort.
+
+This README is still very incomplete!
+================================================================================
+
+================================================================================
+Installation
+--------------------------------------------------------------------------------
+To use the module you only need to refence the file fort_arrange.f90, for
+example to use fort_arrange in a program test.90 using ifort simply type:
+    $ifort fort_arrange.f90 test.f90 -lblas
+================================================================================
+
+================================================================================
+Use
+--------------------------------------------------------------------------------
+To sort a vector x of length n simply call sort(n,x).
+
+To sort a matrix x of size n,m by the first column call sort(n,m,x).
+
+To sort a matrix x of size n,m by column k call sort(n,m,x,k).
+
+To check if a vector x of length n is sorted use the function is_sorted(n,x),
+the result is 0 if the vector is sorted if unsorted it will return the first out
+of order element.
+
+To purmute a vector of x of length n into vector y of length m using map call
+permute(n,m,map,x,y)
+================================================================================
