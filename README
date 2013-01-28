@@ -13,7 +13,7 @@ Notes
 Requires BLAS to compile.  If you do not have a BLAS implementation a non
 optimized version can be found at www.netlib.org/blas/.  For free optimized
 implementations consider ATLAS (www.math-atlas.sourceforge.net/) or OpenBLAS
-(www.xianyi.github.com/OpenBLAS/).
+(https://github.com/xianyi/OpenBLAS).
 
 Currently supports the following data types:
   * integer
