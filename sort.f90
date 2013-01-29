@@ -33,6 +33,7 @@ subroutine sort_list_int(n,list,map)
   integer, intent(in out) :: list(n)
   integer, intent(out) :: map(n)
   integer :: i
+  map = [1:n]
   if (n > max_interchange_sort_size) then
      call quick_sort(n,list,map)
   else
@@ -45,6 +46,7 @@ subroutine sort_list_real(n,list,map)
   real, intent(in out) :: list(n)
   integer, intent(out) :: map(n)
   integer :: i
+  map = [1:n]
   if (n > max_interchange_sort_size) then
      call quick_sort(n,list,map)
   else
@@ -57,6 +59,7 @@ subroutine sort_list_dble(n,list,map)
   double precision, intent(in out) :: list(n)
   integer, intent(out) :: map(n)
   integer :: i
+  map = [1:n]
   if (n > max_interchange_sort_size) then
      call quick_sort(n,list,map)
   else

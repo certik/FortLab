@@ -69,5 +69,3 @@ subroutine sort_mat_idx_col_int(n,m,mat,col)
   call sort(n,list,map)
   call permute(n,n,m,map,mat,mat)
 end subroutine sort_mat_idx_col_int
-
-

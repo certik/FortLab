@@ -3,24 +3,41 @@ fort_arrange
 ================================================================================
 Summary
 --------------------------------------------------------------------------------
-Fortran module for the arrangement of numeric arrays and matrices.  This module
-is still in early development and comments and feedback are welcomed.
+Fort Arrange is a Fortran module for the arrangement of numeric arrays and
+matrices.  Fort Arrange has been designed to provide a simple and flexible 
+interface to efficient arrangement tools including sorting and perumtation.  
+
+Fort Arrange's core is a hybrid sort algorithm that uses an interchange sort for
+small lists and a quick sort for larger lists.
 ================================================================================
 
 ================================================================================
 Notes
 --------------------------------------------------------------------------------
-Requires BLAS to compile.  If you do not have a BLAS implementation a non
-optimized version can be found at www.netlib.org/blas/.  For free optimized
+Fort Arrange is still in early development and both comments and feedback are 
+warmly welcomed.
+
+The sort algorithm uses a hybrid quick-interchange sort.  Interchange sort is
+used for smaller list and a recursive quick sort is used for larger lists.  I am
+currently test a flat quick sort algorithm.  The default is to use interchange
+sort for any list of 20 or less elements.  This threshold can be set with the
+subroutine set_max_interchange_sort_size.  The quick uses the mean of the first
+and last element as the pivot.  
+  
+Currently Fort Arrange uses BLAS.  If you do not have a BLAS implementation, a
+non optimized version can be found at www.netlib.org/blas/.  For free optimized
 implementations consider ATLAS (www.math-atlas.sourceforge.net/) or OpenBLAS
 (https://github.com/xianyi/OpenBLAS).
 
-Currently supports the following data types:
+Fort Arrange currently supports the following data types:
   * integer
   * real
   * double precision
+I have not added complex data types because I do not have much experience working
+with them in fortran and therefore do not know how to write efficient code for
+them.  Expansions to complex data types would be welcomed
 
-Has been tested on current versions of gfortran and ifort.
+Testing has been done using current versions of gfortran and ifort.
 
 This README is still very incomplete!
 ================================================================================
@@ -28,7 +45,7 @@ This README is still very incomplete!
 ================================================================================
 Installation
 --------------------------------------------------------------------------------
-To use the module you only need to refence the file fort_arrange.f90, for
+To use the module you only need to reference the file fort_arrange.f90, for
 example to use fort_arrange in a program test.90 using ifort simply type:
     $ifort fort_arrange.f90 test.f90 -lblas
 ================================================================================
@@ -36,16 +53,67 @@ example to use fort_arrange in a program test.90 using ifort simply type:
 ================================================================================
 Use
 --------------------------------------------------------------------------------
-To sort a vector x of length n simply call sort(n,x).
+Consider the following variables
+N        - INTEGER
+M        - INTEGER
+VEC(N)   - INTEGER, REAL, or DOUBLE PRECISION
+VEC2(M)  - INTEGER, REAL, or DOUBLE PRECISION
+MAP(N)   - INTEGER
+MAT(N,M) - INTEGER, REAL, or DOUBLE PRECISION 
 
-To sort a matrix x of size n,m by the first column call sort(n,m,x).
+Sorting - subroutine sort
+--------------------------------------------------------------------------------
+  * Sort a vector
+	sort(N,VEC)
+  * Sort a vector and also get the map of the sorting
+	sort(N,VEC,MAP)
+  * Sort a matrix by the first column
+	sort(N,M,MAT)
+  * Sort a matrix by the Kth column
+	sort(N,M,MAT,K
 
-To sort a matrix x of size n,m by column k call sort(n,m,x,k).
+Permute - subroutine permute
+--------------------------------------------------------------------------------
+permute(M,N,MAP,VEC2,VEC) permutes the vector VEC2 into the vector VEC using the
+map MAP.
 
-To check if a vector x of length n is sorted use the function is_sorted(n,x),
-the result is 0 if the vector is sorted if unsorted it will return the first out
-of order element.
+Is Sorted - function is_sorted
+--------------------------------------------------------------------------------
+is_sorted(N,VEC) will return the integer 0 if vector VEC is sorted, otherwise it
+will return the index i of the first element of VEC such that VEC(i-1) > VEC(i)
 
-To purmute a vector of x of length n into vector y of length m using map call
-permute(n,m,map,x,y)
+Set Max Interchange Sort Size - subroutine set_max_interchange_sort_size
+--------------------------------------------------------------------------------
+set_max_interchange_sort_size(N) will cause sort to use interchange sort for all
+lists less than or equal to N elements in length.  Please note that even when a
+list larger than N is sorted, interchange sort will be used every time quick 
+sort makes a partition of N elements or less.
+================================================================================
+
+================================================================================
+Future
+--------------------------------------------------------------------------------
+
+Short Term
+--------------------------------------------------------------------------------
+Test a flat implementation of quick sort to replace the current recursive
+implementation.
+
+Explore the removal of the BLAS dependancies.  Currently BLAS is only used for
+the XSWAP and XCOPY functions.  Good compliers are very good at these actions on
+their own and so they may not be adding value.  In fact because some of XCOPY
+calls are being made along the rows of matrices they may be slower.
+
+Longer Term
+--------------------------------------------------------------------------------
+Allow multi column matrix sorts.
+
+Allow for reverse sort.
+
+Added in string sorting.  I am debating if this should be part of a separate
+string library.  The biggest problem with adding these tool into this library
+is that it would create issues with some compilers.  The 2003 and 2008 Fortran
+standards have improved the functionality around string and does not make since
+to develop any new tools that do not take advantage of these features but some
+compilers have not yet implemented some of these futures including gfortran. 
 ================================================================================

@@ -4,13 +4,10 @@ subroutine permute_vec_int(n,m,map,vec_in,vec_out)
   integer, intent(out) :: vec_out(m)
   integer :: i 
   if (maxval(map) > n .or. maxval(map) < 1) then
-     write(error_unit,10)
+     write(error_unit,"('Error: Invalid reference in map')")
      stop
   end if
-  do i = 1,m
-     vec_out(i) = vec_in(map(i))
-  end do
-10 format('Error: Invalid reference in map')
+  vec_out = vec_in(map)
 end subroutine permute_vec_int
 
 subroutine permute_vec_real(n,m,map,vec_in,vec_out)
@@ -19,13 +16,10 @@ subroutine permute_vec_real(n,m,map,vec_in,vec_out)
   real, intent(out) :: vec_out(m)
   integer :: i 
   if (maxval(map) > n .or. maxval(map) < 1) then
-     write(error_unit,10)
+     write(error_unit,"('Error: Invalid reference in map')")
      stop
   end if
-  do i = 1,m
-     vec_out(i) = vec_in(map(i))
-  end do
-10 format('Error: Invalid reference in map')
+  vec_out = vec_in(map)
 end subroutine permute_vec_real
 
 subroutine permute_vec_dble(n,m,map,vec_in,vec_out)
@@ -34,11 +28,8 @@ subroutine permute_vec_dble(n,m,map,vec_in,vec_out)
   double precision, intent(out) :: vec_out(m)
   integer :: i 
   if (maxval(map) > n .or. maxval(map) < 1) then
-     write(error_unit,10)
+     write(error_unit,"('Error: Invalid reference in map')")
      stop
   end if
-  do i = 1,m
-     vec_out(i) = vec_in(map(i))
-  end do
-10 format('Error: Invalid reference in map')
+  vec_out = vec_in(map)
 end subroutine permute_vec_dble
