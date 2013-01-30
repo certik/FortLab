@@ -3,9 +3,8 @@ subroutine interchange_sort_list_dble(n,x)
   double precision, intent(in out) :: x(n)
   integer :: i,j
   do i = 1,n - 1
-     do j = i + 1,n
-        if (x(i) > x(j)) call swap(x(i),x(j))
-     end do
+     j = minloc(x(i:))
+     if (j > 1) call swap(x(i),x(i + j - 1))
   end do
 end subroutine interchange_sort_list_dble
 
@@ -14,9 +13,8 @@ subroutine interchange_sort_list_real(n,x)
   real, intent(in out) :: x(n)
   integer :: i,j
   do i = 1,n - 1
-     do j = i + 1,n
-        if (x(i) > x(j)) call swap(x(i),x(j))
-     end do
+     j = minloc(x(i:))
+     if (j > 1) call swap(x(i),x(i + j - 1))
   end do
 end subroutine interchange_sort_list_real
 
@@ -25,8 +23,7 @@ subroutine interchange_sort_list_int(n,x)
   integer, intent(in out) :: x(n)
   integer :: i,j
   do i = 1,n - 1
-     do j = i + 1,n
-        if (x(i) > x(j)) call swap(x(i),x(j))
-     end do
+     j = minloc(x(i:))
+     if (j > 1) call swap(x(i),x(i + j - 1))
   end do
 end subroutine interchange_sort_list_int
