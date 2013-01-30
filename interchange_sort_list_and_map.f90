@@ -4,7 +4,7 @@ subroutine interchange_sort_list_and_map_int(n,x,map)
   integer, intent(in out) :: map(n)
   integer :: i,j
   do i = 1,n - 1
-     j = minloc(x(i:))
+     j = minloc(x(i:),1)
      if (j > 1) then
         call swap(x(i),x(i + j - 1))
         call swap(x(i),x(i + j - 1))
@@ -18,7 +18,7 @@ subroutine interchange_sort_list_and_map_real(n,x,map)
   integer, intent(in out) :: map(n)
   integer :: i,j
   do i = 1,n - 1
-     j = minloc(x(i:))
+     j = minloc(x(i:),1)
      if (j > 1) then
         call swap(x(i),x(i + j - 1))
         call swap(x(i),x(i + j - 1))
@@ -32,7 +32,7 @@ subroutine interchange_sort_list_and_map_dble(n,x,map)
   integer, intent(in out) :: map(n)
   integer :: i,j
   do i = 1,n - 1
-     j = minloc(x(i:))
+     j = minloc(x(i:),1)
      if (j > 1) then
         call swap(x(i),x(i + j - 1))
         call swap(x(i),x(i + j - 1))
