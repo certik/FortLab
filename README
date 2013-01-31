@@ -64,22 +64,22 @@ MAT(N,M) - INTEGER, REAL, or DOUBLE PRECISION
 Sorting - subroutine sort
 --------------------------------------------------------------------------------
   * Sort a vector
-	sort(N,VEC)
+	sort(VEC)
   * Sort a vector and also get the map of the sorting
-	sort(N,VEC,MAP)
+	sort(VEC,MAP)
   * Sort a matrix by the first column
-	sort(N,M,MAT)
+	sort(MAT)
   * Sort a matrix by the Kth column
-	sort(N,M,MAT,K
+	sort(MAT,K)
 
 Permute - subroutine permute
 --------------------------------------------------------------------------------
-permute(M,N,MAP,VEC2,VEC) permutes the vector VEC2 into the vector VEC using the
-map MAP.
+permute(MAP,VEC2,VEC) permutes the vector VEC2 into the vector VEC using the map
+MAP.
 
 Is Sorted - function is_sorted
 --------------------------------------------------------------------------------
-is_sorted(N,VEC) will return the integer 0 if vector VEC is sorted, otherwise it
+is_sorted(VEC) will return the integer 0 if vector VEC is sorted, otherwise it
 will return the index i of the first element of VEC such that VEC(i-1) > VEC(i)
 
 Set Max Interchange Sort Size - subroutine set_max_interchange_sort_size

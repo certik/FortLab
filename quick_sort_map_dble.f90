@@ -1,8 +1,7 @@
-recursive subroutine quick_sort_map_dble(n,x,map)
-  integer, intent(in) :: n
-  double precision, intent(in out) :: x(n)
-  integer, intent(in out) :: map(n)
-  integer :: i,j
+recursive subroutine quick_sort_map_dble(x,map)
+  double precision, intent(in out) :: x(:)
+  integer, intent(in out) :: map(:)
+  integer :: i,j,n
   double precision :: pivot
 
   !Use mean of first and last to avoid n*n behavior with sorted lists
@@ -28,15 +27,14 @@ recursive subroutine quick_sort_map_dble(n,x,map)
   !Run quick or interchange sort on the smaller lists
   j = i - 1
   if (max_interchange_sort_size < j) then
-     call quick_sort(j,x(:j),map(:j))
+     call quick_sort(x(:j),map(:j))
   else
-     call interchange_sort(j,x(:j),map(:j))
+     call interchange_sort(x(:j),map(:j))
   end if
-  j = n - i + 1
-  if (max_interchange_sort_size < j) then
-     call quick_sort(j,x(i:),map(i:))
+  if (max_interchange_sort_size < n - i + 1) then
+     call quick_sort(x(i:),map(i:))
   else
-     call interchange_sort(j,x(i:),map(i:))     
+     call interchange_sort(x(i:),map(i:))     
   end if
 end subroutine quick_sort_map_dble
 

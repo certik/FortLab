@@ -1,9 +1,8 @@
-function is_sorted_int(n,x) result(out)
-  integer, intent(in) :: n
-  integer, intent(in) :: x(n)
+function is_sorted_int(x) result(out)
+  integer, intent(in) :: x(:)
   integer :: i,out
   out = 0
-  do i = 2,n
+  do i = 2,size(x)
      if (x(i) < x(i - 1)) then
         out = i
         exit
@@ -11,12 +10,11 @@ function is_sorted_int(n,x) result(out)
   end do
 end function is_sorted_int
 
-function is_sorted_real(n,x) result(out)
-  integer, intent(in) :: n
-  real, intent(in) :: x(n)
+function is_sorted_real(x) result(out)
+  real, intent(in) :: x(:)
   integer :: i,out
   out = 0
-  do i = 2,n
+  do i = 2,size(x)
      if (x(i) < x(i - 1)) then
         out = i
         exit
@@ -24,12 +22,11 @@ function is_sorted_real(n,x) result(out)
   end do
 end function is_sorted_real
 
-function is_sorted_dble(n,x) result(out)
-  integer, intent(in) :: n
-  double precision, intent(in) :: x(n)
+function is_sorted_dble(x) result(out)
+  double precision, intent(in) :: x(:)
   integer :: i,out
   out = 0
-  do i = 2,n
+  do i = 2,size(x)
      if (x(i) < x(i - 1)) then
         out = i
         exit

@@ -1,8 +1,8 @@
-recursive subroutine quick_sort_int(n,x)
-  integer, intent(in) :: n
-  integer, intent(in out) :: x(n)
-  integer :: i,j
+recursive subroutine quick_sort_int(x)
+  integer, intent(in out) :: x(:)
+  integer :: i,j,n
   integer :: pivot
+  n = size(x)
 
   !Use mean of first and last to avoid n*n behavior with sorted lists
   pivot = (x(1) + x(n)) / 2
@@ -26,15 +26,14 @@ recursive subroutine quick_sort_int(n,x)
   !Run quick or interchange sort on the smaller lists
   j = i - 1
   if (max_interchange_sort_size < j) then
-     call quick_sort(j,x(:j))
+     call quick_sort(x(:j))
   else
-     call interchange_sort(j,x(:j))
+     call interchange_sort(x(:j))
   end if
-  j = n - i + 1
-  if (max_interchange_sort_size < j) then
-     call quick_sort(j,x(i:))
+  if (max_interchange_sort_size < n - i + 1) then
+     call quick_sort(x(i:))
   else
-     call interchange_sort(j,x(i:))
+     call interchange_sort(x(i:))
   end if
 end subroutine quick_sort_int
 

@@ -1,69 +1,74 @@
-subroutine sort_int(n,list)
-  integer, intent(in) :: n
-  integer, intent(in out) :: list(n)
-  if (n > max_interchange_sort_size) then
-     call quick_sort(n,list)
+subroutine sort_int(x)
+  integer, intent(in out) :: x(:)
+  if (size(x) > max_interchange_sort_size) then
+     call quick_sort(x)
   else
-     call interchange_sort(n,list)
+     call interchange_sort(x)
   end if
 end subroutine sort_int
 
-subroutine sort_real(n,list)
-  integer, intent(in) :: n
-  real, intent(in out) :: list(n)
-  if (n > max_interchange_sort_size) then
-     call quick_sort(n,list)
+subroutine sort_real(x)
+  real, intent(in out) :: x(:)
+  if (size(x) > max_interchange_sort_size) then
+     call quick_sort(x)
   else
-     call interchange_sort(n,list)
+     call interchange_sort(x)
   end if
 end subroutine sort_real
 
-subroutine sort_dble(n,list)
-  integer, intent(in) :: n
-  double precision, intent(in out) :: list(n)
-  if (n > max_interchange_sort_size) then
-     call quick_sort(n,list)
+subroutine sort_dble(x)
+  double precision, intent(in out) :: x(:)
+  if (size(x) > max_interchange_sort_size) then
+     call quick_sort(x)
   else
-     call interchange_sort(n,list)
+     call interchange_sort(x)
   end if
 end subroutine sort_dble
 
-subroutine sort_list_int(n,list,map)
-  integer, intent(in) :: n
-  integer, intent(in out) :: list(n)
-  integer, intent(out) :: map(n)
-  integer :: i
-  map = [1:n]
+subroutine sort_list_int(x,map)
+  integer, intent(in out) :: x(:)
+  integer, intent(out) :: map(:)
+  integer :: i,n
+  n = size(x)
+  if (size(map) /= n) then
+     write(error_unit,'("Error: vector and map do not match in length.")')
+  end if
+  map= [1:n]
   if (n > max_interchange_sort_size) then
-     call quick_sort(n,list,map)
+     call quick_sort(x,map)
   else
-     call interchange_sort(n,list,map)
+     call interchange_sort(x,map)
   end if
 end subroutine sort_list_int
 
-subroutine sort_list_real(n,list,map)
-  integer, intent(in) :: n
-  real, intent(in out) :: list(n)
-  integer, intent(out) :: map(n)
-  integer :: i
+subroutine sort_list_real(x,map)
+  real, intent(in out) :: x(:)
+  integer, intent(out) :: map(:)
+  integer :: i,n
+  n = size(x)
+  if (size(map) /= n) then
+     write(error_unit,'("Error: vector and map do not match in length.")')
+  end if
   map = [1:n]
   if (n > max_interchange_sort_size) then
-     call quick_sort(n,list,map)
+     call quick_sort(x,map)
   else
-     call interchange_sort(n,list,map)
+     call interchange_sort(x,map)
   end if
 end subroutine sort_list_real
 
-subroutine sort_list_dble(n,list,map)
-  integer, intent(in) :: n
-  double precision, intent(in out) :: list(n)
-  integer, intent(out) :: map(n)
-  integer :: i
+subroutine sort_list_dble(x,map)
+  double precision, intent(in out) :: x(:)
+  integer, intent(out) :: map(:)
+  integer :: i,n
+  n = size(x)
+  if (size(map) /= n) then
+     write(error_unit,'("Error: vector and map do not match in length.")')
+  end if
   map = [1:n]
   if (n > max_interchange_sort_size) then
-     call quick_sort(n,list,map)
+     call quick_sort(x,map)
   else
-     call interchange_sort(n,list,map)
+     call interchange_sort(x,map)
   end if
 end subroutine sort_list_dble
-

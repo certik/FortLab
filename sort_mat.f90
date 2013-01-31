@@ -1,71 +1,69 @@
-subroutine sort_mat_dble(n,m,mat)
-  integer, intent(in) :: n,m
-  double precision, intent(in out) :: mat(n,m)
-  integer :: map(n)
-  double precision :: list(n)
-  call DCOPY(n,mat(:,1),1,list,1)
-  call sort(n,list,map)
-  call permute(n,n,m,map,mat,mat)
+subroutine sort_mat_dble(mat)
+  double precision, intent(in out) :: mat(:,:)
+  integer :: map(size(mat,1))
+  double precision :: x(size(mat,1))
+  call DCOPY(size(mat,1),mat(:,1),1,x,1)
+  call sort(x,map)
+  call permute(map,mat,mat)
 end subroutine sort_mat_dble
 
-subroutine sort_mat_real(n,m,mat)
-  integer, intent(in) :: n,m
-  real, intent(in out) :: mat(n,m)
-  integer :: map(n)
-  real :: list(n)
-  call SCOPY(n,mat(:,1),1,list,1)
-  call sort(n,list,map)
-  call permute(n,n,m,map,mat,mat)
+subroutine sort_mat_real(mat)
+  real, intent(in out) :: mat(:,:)
+  integer :: map(size(mat,1))
+  real :: x(size(mat,1))
+  call SCOPY(size(mat,1),mat(:,1),1,x,1)
+  call sort(x,map)
+  call permute(map,mat,mat)
 end subroutine sort_mat_real
 
-subroutine sort_mat_int(n,m,mat)
-  integer, intent(in) :: n,m
-  integer, intent(in out) :: mat(n,m)
-  integer :: map(n)
-  integer :: list(n)
-  list = mat(:,1)
-  call sort(n,list,map)
-  call permute(n,n,m,map,mat,mat)
+subroutine sort_mat_int(mat)
+  integer, intent(in out) :: mat(:,:)
+  integer :: map(size(mat,1))
+  integer :: x(size(mat,1))
+  x = mat(:,1)
+  call sort(x,map)
+  call permute(map,mat,mat)
 end subroutine sort_mat_int
 
-subroutine sort_mat_idx_col_dble(n,m,mat,col)
-  integer, intent(in) :: n,m,col
-  double precision, intent(in out) :: mat(n,m)
-  integer :: map(n)
-  double precision :: list(n)
-  if (col > m .or. col < 1) then
+
+subroutine sort_mat_idx_col_dble(mat,col)
+  double precision, intent(in out) :: mat(:,:)
+  integer, intent(in) :: col
+  integer :: map(size(mat,1))
+  double precision :: x(size(mat,1))
+  if (col > size(mat,2) .or. col < 1) then
      write(error_unit,'("Error: Column number is out of bounds.")')
      stop
   end if
-  call DCOPY(n,mat(:,col),1,list,1)
-  call sort(n,list,map)
-  call permute(n,n,m,map,mat,mat)
+  call DCOPY(size(mat,1),mat(:,col),1,x,1)
+  call sort(x,map)
+  call permute(map,mat,mat)
 end subroutine sort_mat_idx_col_dble
 
-subroutine sort_mat_idx_col_real(n,m,mat,col)
-  integer, intent(in) :: n,m,col
-  real, intent(in out) :: mat(n,m)
-  integer :: map(n)
-  double precision :: list(n)
-  if (col > m .or. col < 1) then
+subroutine sort_mat_idx_col_real(mat,col)
+  real, intent(in out) :: mat(:,:)
+  integer, intent(in) :: col
+  integer :: map(size(mat,1))
+  real :: x(size(mat,1))
+  if (col > size(mat,2) .or. col < 1) then
      write(error_unit,'("Error: Column number is out of bounds.")')
      stop
   end if
-  call SCOPY(n,mat(:,col),1,list,1)
-  call sort(n,list,map)
-  call permute(n,n,m,map,mat,mat)
+  call SCOPY(size(mat,1),mat(:,col),1,x,1)
+  call sort(x,map)
+  call permute(map,mat,mat)
 end subroutine sort_mat_idx_col_real
 
-subroutine sort_mat_idx_col_int(n,m,mat,col)
-  integer, intent(in) :: n,m,col
-  integer, intent(in out) :: mat(n,m)
-  integer :: map(n)
-  integer :: list(n)
-  if (col > m .or. col < 1) then
+subroutine sort_mat_idx_col_int(mat,col)
+  integer, intent(in out) :: mat(:,:)
+  integer, intent(in) :: col
+  integer :: map(size(mat,1))
+  integer :: x(size(mat,1))
+  if (col > size(mat,2) .or. col < 1) then
      write(error_unit,'("Error: Column number is out of bounds.")')
      stop
   end if
-  list = mat(:,col)
-  call sort(n,list,map)
-  call permute(n,n,m,map,mat,mat)
+  x = mat(:,col)
+  call sort(x,map)
+  call permute(map,mat,mat)
 end subroutine sort_mat_idx_col_int
