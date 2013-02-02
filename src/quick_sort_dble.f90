@@ -1,4 +1,4 @@
-recursive subroutine quick_sort_dble(x)
+pure recursive subroutine quick_sort_dble(x)
   double precision, intent(in out) :: x(:)
   integer :: i,j,n
   double precision :: pivot

@@ -1,4 +1,4 @@
-subroutine sort_int(x)
+pure subroutine sort_int(x)
   integer, intent(in out) :: x(:)
   if (size(x) > max_interchange_sort_size) then
      call quick_sort(x)
@@ -7,7 +7,7 @@ subroutine sort_int(x)
   end if
 end subroutine sort_int
 
-subroutine sort_real(x)
+pure subroutine sort_real(x)
   real, intent(in out) :: x(:)
   if (size(x) > max_interchange_sort_size) then
      call quick_sort(x)
@@ -16,7 +16,7 @@ subroutine sort_real(x)
   end if
 end subroutine sort_real
 
-subroutine sort_dble(x)
+pure subroutine sort_dble(x)
   double precision, intent(in out) :: x(:)
   if (size(x) > max_interchange_sort_size) then
      call quick_sort(x)
@@ -25,7 +25,7 @@ subroutine sort_dble(x)
   end if
 end subroutine sort_dble
 
-subroutine sort_list_int(x,map)
+subroutine sort_map_int(x,map)
   integer, intent(in out) :: x(:)
   integer, intent(out) :: map(:)
   integer :: i,n
@@ -39,9 +39,9 @@ subroutine sort_list_int(x,map)
   else
      call interchange_sort(x,map)
   end if
-end subroutine sort_list_int
+end subroutine sort_map_int
 
-subroutine sort_list_real(x,map)
+subroutine sort_map_real(x,map)
   real, intent(in out) :: x(:)
   integer, intent(out) :: map(:)
   integer :: i,n
@@ -55,9 +55,9 @@ subroutine sort_list_real(x,map)
   else
      call interchange_sort(x,map)
   end if
-end subroutine sort_list_real
+end subroutine sort_map_real
 
-subroutine sort_list_dble(x,map)
+subroutine sort_map_dble(x,map)
   double precision, intent(in out) :: x(:)
   integer, intent(out) :: map(:)
   integer :: i,n
@@ -71,4 +71,4 @@ subroutine sort_list_dble(x,map)
   else
      call interchange_sort(x,map)
   end if
-end subroutine sort_list_dble
+end subroutine sort_map_dble

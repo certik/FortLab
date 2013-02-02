@@ -1,4 +1,4 @@
-subroutine interchange_sort_list_dble(x)
+pure subroutine interchange_sort_list_dble(x)
   double precision, intent(in out) :: x(:)
   integer :: i,j
   do i = 1,size(x) - 1
@@ -7,7 +7,7 @@ subroutine interchange_sort_list_dble(x)
   end do
 end subroutine interchange_sort_list_dble
 
-subroutine interchange_sort_list_real(x)
+pure subroutine interchange_sort_list_real(x)
   real, intent(in out) :: x(:)
   integer :: i,j
   do i = 1,size(x) - 1
@@ -16,7 +16,7 @@ subroutine interchange_sort_list_real(x)
   end do
 end subroutine interchange_sort_list_real
 
-subroutine interchange_sort_list_int(x)
+pure subroutine interchange_sort_list_int(x)
   integer, intent(in out) :: x(:)
   integer :: i,j
   do i = 1,size(x) - 1

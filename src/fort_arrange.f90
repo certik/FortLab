@@ -35,9 +35,9 @@ module fort_arrange
      module procedure sort_int
      module procedure sort_real
      module procedure sort_dble
-     module procedure sort_list_int
-     module procedure sort_list_real
-     module procedure sort_list_dble
+     module procedure sort_map_int
+     module procedure sort_map_real
+     module procedure sort_map_dble
      module procedure sort_mat_int
      module procedure sort_mat_real
      module procedure sort_mat_dble
@@ -50,7 +50,21 @@ module fort_arrange
      module procedure is_sorted_real
      module procedure is_sorted_dble
   end interface is_sorted
+  interface unique
+     module procedure unique_func_int
+     module procedure unique_func_real
+     module procedure unique_func_dble
+     module procedure unique_sub_int
+     module procedure unique_sub_real
+     module procedure unique_sub_dble
+  end interface unique
 contains
+  include 'unique_func_int.f90'
+  include 'unique_func_real.f90'
+  include 'unique_func_dble.f90'
+  include 'unique_sub_int.f90'
+  include 'unique_sub_real.f90'
+  include 'unique_sub_dble.f90'
   include 'is_sorted.f90'
   include 'sort.f90'
   include 'sort_mat.f90'

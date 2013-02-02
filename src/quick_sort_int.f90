@@ -1,4 +1,4 @@
-recursive subroutine quick_sort_int(x)
+pure recursive subroutine quick_sort_int(x)
   integer, intent(in out) :: x(:)
   integer :: i,j,n
   integer :: pivot

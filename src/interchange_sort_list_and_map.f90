@@ -1,4 +1,4 @@
-subroutine interchange_sort_list_and_map_int(x,map)
+pure subroutine interchange_sort_list_and_map_int(x,map)
   integer, intent(in out) :: x(:)
   integer, intent(in out) :: map(:)
   integer :: i,j
@@ -11,7 +11,7 @@ subroutine interchange_sort_list_and_map_int(x,map)
   end do
 end subroutine interchange_sort_list_and_map_int
 
-subroutine interchange_sort_list_and_map_real(x,map)
+pure subroutine interchange_sort_list_and_map_real(x,map)
   real, intent(in out) :: x(:)
   integer, intent(in out) :: map(:)
   integer :: i,j
@@ -24,7 +24,7 @@ subroutine interchange_sort_list_and_map_real(x,map)
   end do
 end subroutine interchange_sort_list_and_map_real
 
-subroutine interchange_sort_list_and_map_dble(x,map)
+pure subroutine interchange_sort_list_and_map_dble(x,map)
   double precision, intent(in out) :: x(:)
   integer, intent(in out) :: map(:)
   integer :: i,j

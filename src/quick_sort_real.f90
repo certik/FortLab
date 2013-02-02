@@ -1,4 +1,4 @@
-recursive subroutine quick_sort_real(x)
+pure recursive subroutine quick_sort_real(x)
   real, intent(in out) :: x(:)
   integer :: i,j,n
   real :: pivot
