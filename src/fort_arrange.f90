@@ -57,6 +57,9 @@ module fort_arrange
      module procedure unique_sub_int
      module procedure unique_sub_real
      module procedure unique_sub_dble
+     module procedure unique_sub_map_int
+     module procedure unique_sub_map_real
+     module procedure unique_sub_map_dble
   end interface unique
 contains
   include 'unique_func_int.f90'
@@ -65,6 +68,9 @@ contains
   include 'unique_sub_int.f90'
   include 'unique_sub_real.f90'
   include 'unique_sub_dble.f90'
+  include 'unique_sub_map_int.f90'
+  include 'unique_sub_map_real.f90'
+  include 'unique_sub_map_dble.f90'
   include 'is_sorted.f90'
   include 'sort.f90'
   include 'sort_mat.f90'
