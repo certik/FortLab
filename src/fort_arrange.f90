@@ -51,9 +51,9 @@ module fort_arrange
      module procedure is_sorted_dble
   end interface is_sorted
   interface unique
-     module procedure unique_func_int
-     module procedure unique_func_real
-     module procedure unique_func_dble
+!     module procedure unique_func_int
+!     module procedure unique_func_real
+!     module procedure unique_func_dble
      module procedure unique_sub_int
      module procedure unique_sub_real
      module procedure unique_sub_dble
@@ -62,9 +62,9 @@ module fort_arrange
      module procedure unique_sub_map_dble
   end interface unique
 contains
-  include 'unique_func_int.f90'
-  include 'unique_func_real.f90'
-  include 'unique_func_dble.f90'
+!  include 'unique_func_int.f90'
+!  include 'unique_func_real.f90'
+!  include 'unique_func_dble.f90'
   include 'unique_sub_int.f90'
   include 'unique_sub_real.f90'
   include 'unique_sub_dble.f90'

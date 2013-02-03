@@ -44,10 +44,15 @@ Testing has been done using current versions of gfortran and ifort.
 ================================================================================
 Installation
 --------------------------------------------------------------------------------
-Please see the Makefile.  It is currently configured for ifort on MacOSX.  The
-move the file in the lib folder to where you store libraries and the file in the
-header folder to where you store mod files.  Then to use the library link to the
-library fort_arrange and include fort_arrange.mod.
+A make file has been provided to build a static library.  The library is placed
+in the sub folder lib and the mod file is placed in the sub folder headers.  To
+use Fort Arrange link to the library, include the mod file.  The Makefile has
+been set up for ifort, but is easy to modify for other compilers.  This is some
+documentation in the Makefile and this will improve with time.
+
+If you can not get the makefile to work or if you do not to use Fort Arrange as
+a static library is easy to reference.  Simply include the file fort_arrange.f90
+and link to a blas library.
 ================================================================================
 
 ================================================================================
@@ -87,12 +92,9 @@ Set Max Interchange Sort Size - subroutine set_max_interchange_sort_size
     will be used every time quick sort makes a partition of N elements or less.
         set_max_interchange_sort_size(N) 
 
-Unique - function/subroutine unique
+Unique - subroutine unique
 --------------------------------------------------------------------------------
-  * Return a vector VEC2 of unique elements of VEC, VEC2 will be sorted
-        VEC2 = unique(VEC)
-
-  * Set VEC2 to be a unique sorted list of elements of VEC
+  * Set allocatable vector VEC2 to be a unique sorted list of elements of VEC
         unique(VEC,VEC2)
 ================================================================================
 
