@@ -11,7 +11,7 @@
 #will work with.
 #  ifort
 #  gfortran
-FC=ifort
+FC=gfortran
 
 #BLAS library name
 #  blas:     standard
