@@ -1,44 +1,42 @@
-recursive subroutine quick_sort_map_int(x,map)
-  integer, intent(in out) :: x(:)
+recursive subroutine quick_sort_map_int(vec,map)
+  integer, intent(in out) :: vec(:)
   integer, intent(in out) :: map(:)
-  integer :: i,j,n
+  integer :: i,j
   integer :: pivot
 
   !Use mean of first and last to avoid n*n behavior with sorted lists
-  pivot = (x(1) + x(n)) / 2
+  pivot = (vec(1) + vec(size(vec))) / 2
 
   !Find i and j on the wrong side of the pivot and swap
   i = 0
-  j = n + 1
+  j = size(vec) + 1
   do
      do
         i = i + 1
-        if (x(i) > pivot) exit
+        if (vec(i) > pivot) exit
      end do
      do 
         j = j - 1
-        if (x(j) < pivot) exit
+        if (vec(j) < pivot) exit
      end do
      if (i > j) exit
-     call swap(x(i),x(j))
+     call swap(vec(i),vec(j))
      call swap(map(i),map(j))
   end do
 
   !Run quick or interchange sort on the smaller lists
   j = i - 1
   if (max_interchange_sort_size < j) then
-     call quick_sort(x(:j),map(:j))
+     call quick_sort(vec(:j),map(:j))
   else
-     call interchange_sort(x(:j),map(:j))
+     call interchange_sort(vec(:j),map(:j))
   end if
-  if (max_interchange_sort_size < n - i + 1) then
-     call quick_sort(x(i:),map(i:))
+  if (max_interchange_sort_size < size(vec) - i + 1) then
+     call quick_sort(vec(i:),map(i:))
   else
-     call interchange_sort(x(i:),map(i:))     
+     call interchange_sort(vec(i:),map(i:))     
   end if
 end subroutine quick_sort_map_int
-
-
 
 
 

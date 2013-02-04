@@ -33,7 +33,8 @@ subroutine sort_map_int(x,map)
   if (size(map) /= n) then
      write(error_unit,'("Error: vector and map do not match in length.")')
   end if
-  map= [1:n]
+  !  map = [1:n]
+  map = (/(i,i = 1,n)/)
   if (n > max_interchange_sort_size) then
      call quick_sort(x,map)
   else
@@ -49,7 +50,8 @@ subroutine sort_map_real(x,map)
   if (size(map) /= n) then
      write(error_unit,'("Error: vector and map do not match in length.")')
   end if
-  map = [1:n]
+  !  map = [1:n]
+  map = (/(i,i = 1,n)/)
   if (n > max_interchange_sort_size) then
      call quick_sort(x,map)
   else
@@ -65,7 +67,8 @@ subroutine sort_map_dble(x,map)
   if (size(map) /= n) then
      write(error_unit,'("Error: vector and map do not match in length.")')
   end if
-  map = [1:n]
+  !map = [1:n]
+  map = (/(i,i = 1,n)/)
   if (n > max_interchange_sort_size) then
      call quick_sort(x,map)
   else
