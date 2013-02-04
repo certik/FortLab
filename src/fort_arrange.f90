@@ -2,11 +2,20 @@ module fort_arrange
   use, intrinsic :: iso_fortran_env, only : error_unit
   implicit none
   integer, private, save :: max_interchange_sort_size = 20
-  interface swap
-     module procedure swap_int
-     module procedure swap_real
-     module procedure swap_dble
-  end interface swap
+
+  interface interchange_sort
+     module procedure interchange_sort_int
+     module procedure interchange_sort_real
+     module procedure interchange_sort_dble
+     module procedure interchange_sort_map_int
+     module procedure interchange_sort_map_real
+     module procedure interchange_sort_map_dble
+  end interface interchange_sort
+  interface is_sorted
+     module procedure is_sorted_int
+     module procedure is_sorted_real
+     module procedure is_sorted_dble
+  end interface is_sorted
   interface permute
      module procedure permute_vec_int
      module procedure permute_vec_real
@@ -21,14 +30,6 @@ module fort_arrange
      module procedure permute_mat_in_place_real
      module procedure permute_mat_in_place_dble
   end interface permute
-  interface interchange_sort
-     module procedure interchange_sort_int
-     module procedure interchange_sort_real
-     module procedure interchange_sort_dble
-     module procedure interchange_sort_map_int
-     module procedure interchange_sort_map_real
-     module procedure interchange_sort_map_dble
-  end interface interchange_sort
   interface quick_sort
      module procedure quick_sort_int
      module procedure quick_sort_real
@@ -51,11 +52,11 @@ module fort_arrange
      module procedure sort_mat_idx_col_real
      module procedure sort_mat_idx_col_dble
   end interface sort
-  interface is_sorted
-     module procedure is_sorted_int
-     module procedure is_sorted_real
-     module procedure is_sorted_dble
-  end interface is_sorted
+  interface swap
+     module procedure swap_int
+     module procedure swap_real
+     module procedure swap_dble
+  end interface swap
   interface unique
 !     module procedure unique_func_int
 !     module procedure unique_func_real
@@ -99,7 +100,12 @@ contains
   include 'quick_sort_map_real.f90'
   include 'quick_sort_map_dble.f90'
   include 'set_max_interchange_sort_size.f90'
-  include 'sort.f90'
+  include 'sort_int.f90'
+  include 'sort_real.f90'
+  include 'sort_dble.f90'
+  include 'sort_map_int.f90'
+  include 'sort_map_real.f90'
+  include 'sort_map_dble.f90'
   include 'sort_mat_int.f90'
   include 'sort_mat_real.f90'
   include 'sort_mat_dble.f90'
