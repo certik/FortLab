@@ -58,20 +58,14 @@ module fort_arrange
      module procedure swap_dble
   end interface swap
   interface unique
-!     module procedure unique_func_int
-!     module procedure unique_func_real
-!     module procedure unique_func_dble
-     module procedure unique_sub_int
-     module procedure unique_sub_real
-     module procedure unique_sub_dble
-     module procedure unique_sub_map_int
-     module procedure unique_sub_map_real
-     module procedure unique_sub_map_dble
+     module procedure unique_int
+     module procedure unique_real
+     module procedure unique_dble
+     module procedure unique_map_int
+     module procedure unique_map_real
+     module procedure unique_map_dble
   end interface unique
 contains
-!  include 'unique_func_int.f90'
-!  include 'unique_func_real.f90'
-!  include 'unique_func_dble.f90'
   include 'interchange_sort_int.f90'
   include 'interchange_sort_real.f90'
   include 'interchange_sort_dble.f90'
@@ -113,10 +107,10 @@ contains
   include 'sort_mat_idx_col_real.f90'
   include 'sort_mat_idx_col_dble.f90'
   include 'swap.f90'
-  include 'unique_sub_int.f90'
-  include 'unique_sub_real.f90'
-  include 'unique_sub_dble.f90'
-  include 'unique_sub_map_int.f90'
-  include 'unique_sub_map_real.f90'
-  include 'unique_sub_map_dble.f90'
+  include 'unique_int.f90'
+  include 'unique_real.f90'
+  include 'unique_dble.f90'
+  include 'unique_map_int.f90'
+  include 'unique_map_real.f90'
+  include 'unique_map_dble.f90'
 end module fort_arrange

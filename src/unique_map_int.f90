@@ -1,4 +1,4 @@
-subroutine unique_sub_map_int(x,vec,map)
+subroutine unique_map_int(x,vec,map)
   integer, intent(in) :: x(:)
   integer, intent(out), allocatable :: vec(:)
   integer, intent(out), allocatable :: map(:)
@@ -36,5 +36,5 @@ subroutine unique_sub_map_int(x,vec,map)
   end do
   vec = list(map)
   map = in_map(map)
-end subroutine unique_sub_map_int
+end subroutine unique_map_int
 

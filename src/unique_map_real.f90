@@ -1,13 +1,13 @@
-subroutine unique_sub_map_dble(x,vec,map)
-  double precision, intent(in) :: x(:)
-  double precision, intent(out), allocatable :: vec(:)
+subroutine unique_map_real(x,vec,map)
+  real, intent(in) :: x(:)
+  real, intent(out), allocatable :: vec(:)
   integer, intent(out), allocatable :: map(:)
-  double precision :: list(size(x))
+  real :: list(size(x))
   integer :: i,j,n
   logical :: inc(size(x))
   integer :: in_map(size(x))
   inc = .true.
-  call DCOPY(size(x),x,1,list,1)
+  call SCOPY(size(x),x,1,list,1)
   call sort(list,in_map)
   i = 1
   do
@@ -36,5 +36,5 @@ subroutine unique_sub_map_dble(x,vec,map)
   end do
   vec = list(map)
   map = in_map(map)
-end subroutine unique_sub_map_dble
+end subroutine unique_map_real
 

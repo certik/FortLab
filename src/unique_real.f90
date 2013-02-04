@@ -1,11 +1,11 @@
-subroutine unique_sub_int(x,out)
-  integer, intent(in) :: x(:)
-  integer, intent(out), allocatable :: out(:)
-  integer :: list(size(x))
+subroutine unique_real(x,out)
+  real, intent(in) :: x(:)
+  real, intent(out), allocatable :: out(:)
+  real :: list(size(x))
   integer :: i,j
   logical :: inc(size(x))
   inc = .true.
-  list = x
+  call SCOPY(size(x),x,1,list,1)
   call sort(list)
   i = 1
   do
@@ -29,7 +29,7 @@ subroutine unique_sub_int(x,out)
         out(j) = list(i)
      end if
   end do
-end subroutine unique_sub_int
+end subroutine unique_real
 
 
   

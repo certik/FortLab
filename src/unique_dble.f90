@@ -1,4 +1,4 @@
-subroutine unique_sub_dble(x,out)
+subroutine unique_dble(x,out)
   double precision, intent(in) :: x(:)
   double precision, intent(out), allocatable :: out(:)
   double precision :: list(size(x))
@@ -29,5 +29,6 @@ subroutine unique_sub_dble(x,out)
         out(j) = list(i)
      end if
   end do
-end subroutine unique_sub_dble
+end subroutine unique_dble
+
 
