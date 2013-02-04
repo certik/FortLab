@@ -79,7 +79,10 @@ Permute - subroutine permute
     	permute(MAP,VEC)
 
   * Permute a matrix MAT to MAT2 using MAP
-    	permute(MAP,MAT,MAT2)    
+    	permute(MAP,MAT,MAT2)
+
+  * Permute a matrix MAT using map MAP of same length as dim 1 of MAT in place
+    	permute(MAP,MAT)
 
 Is Sorted - function is_sorted
 --------------------------------------------------------------------------------

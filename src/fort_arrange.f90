@@ -17,6 +17,9 @@ module fort_arrange
      module procedure permute_mat_int
      module procedure permute_mat_real
      module procedure permute_mat_dble
+     module procedure permute_mat_in_place_int
+     module procedure permute_mat_in_place_real
+     module procedure permute_mat_in_place_dble
   end interface permute
   interface interchange_sort
      module procedure interchange_sort_list_int
@@ -96,6 +99,9 @@ contains
   include 'permute_mat_int.f90'
   include 'permute_mat_real.f90'
   include 'permute_mat_dble.f90'
+  include 'permute_mat_in_place_int.f90'
+  include 'permute_mat_in_place_real.f90'
+  include 'permute_mat_in_place_dble.f90'
   include 'swap.f90'
   include 'set_max_interchange_sort_size.f90'
 end module fort_arrange
