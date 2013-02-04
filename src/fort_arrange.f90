@@ -16,6 +16,11 @@ module fort_arrange
      module procedure is_sorted_real
      module procedure is_sorted_dble
   end interface is_sorted
+  interface is_unique
+     module procedure is_unique_int
+     module procedure is_unique_real
+     module procedure is_unique_dble
+  end interface is_unique
   interface permute
      module procedure permute_vec_int
      module procedure permute_vec_real
@@ -75,6 +80,9 @@ contains
   include 'is_sorted_int.f90'
   include 'is_sorted_real.f90'
   include 'is_sorted_dble.f90'
+  include 'is_unique_int.f90'
+  include 'is_unique_real.f90'
+  include 'is_unique_dble.f90'
   include 'permute_vec_int.f90'
   include 'permute_vec_real.f90'
   include 'permute_vec_dble.f90'

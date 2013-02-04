@@ -70,6 +70,12 @@ Sorting - subroutine sort
   * Sort a matrix by the Kth column
 	sort(MAT,K)
 
+Is Sorted - function is_sorted
+--------------------------------------------------------------------------------
+  * Check if VEC is sorted.  Returns integer 0 if sorted, otherwise it returns
+    the first index such that VEC(i) < VEC(i - 1)
+        N = is_sorted(VEC) 
+
 Permute - subroutine permute
 --------------------------------------------------------------------------------
   * Permute a vector VEC to VEC2 using MAP
@@ -84,12 +90,6 @@ Permute - subroutine permute
   * Permute a matrix MAT using map MAP of same length as dim 1 of MAT in place
     	permute(MAP,MAT)
 
-Is Sorted - function is_sorted
---------------------------------------------------------------------------------
-  * Check if VEC is sorted.  Returns integer 0 if sorted, otherwise it returns
-    the first index such that VEC(i) < VEC(i - 1)
-        N = is_sorted(VEC) 
-
 Set Max Interchange Sort Size - subroutine set_max_interchange_sort_size
 --------------------------------------------------------------------------------
   * Set max interchange sort size to integer N.  This will cause sort to use 
@@ -102,6 +102,11 @@ Unique - subroutine unique
 --------------------------------------------------------------------------------
   * Set allocatable vector VEC2 to be a unique sorted list of elements of VEC
         unique(VEC,VEC2)
+
+Is Unique - function is_unique
+--------------------------------------------------------------------------------
+  * Check if all elements of vector VEC are unique.  Returns a logical  value L.
+        L = is_unique(VEC) 
 ================================================================================
 
 ================================================================================
