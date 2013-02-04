@@ -74,6 +74,9 @@ Permute - subroutine permute
 --------------------------------------------------------------------------------
   * Permute a vector VEC to VEC2 using MAP
     	permute(MAP,VEC,VEC2)
+  
+  * Permute a vector VEC inplace using a map MAP of the same length
+    	permute(MAP,VEC)
 
   * Permute a matrix MAT to MAT2 using MAP
     	permute(MAP,MAT,MAT2)    

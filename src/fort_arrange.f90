@@ -11,6 +11,9 @@ module fort_arrange
      module procedure permute_vec_int
      module procedure permute_vec_real
      module procedure permute_vec_dble
+     module procedure permute_vec_in_place_int
+     module procedure permute_vec_in_place_real
+     module procedure permute_vec_in_place_dble
      module procedure permute_mat_int
      module procedure permute_mat_real
      module procedure permute_mat_dble
@@ -87,6 +90,9 @@ contains
   include 'permute_vec_int.f90'
   include 'permute_vec_real.f90'
   include 'permute_vec_dble.f90'
+  include 'permute_vec_in_place_int.f90'
+  include 'permute_vec_in_place_real.f90'
+  include 'permute_vec_in_place_dble.f90'
   include 'permute_mat.f90'
   include 'swap.f90'
   include 'set_max_interchange_sort_size.f90'
