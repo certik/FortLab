@@ -93,7 +93,9 @@ contains
   include 'permute_vec_in_place_int.f90'
   include 'permute_vec_in_place_real.f90'
   include 'permute_vec_in_place_dble.f90'
-  include 'permute_mat.f90'
+  include 'permute_mat_int.f90'
+  include 'permute_mat_real.f90'
+  include 'permute_mat_dble.f90'
   include 'swap.f90'
   include 'set_max_interchange_sort_size.f90'
 end module fort_arrange
