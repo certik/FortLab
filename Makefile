@@ -11,7 +11,8 @@
 #will work with.
 #  ifort
 #  gfortran
-FC=gfortran
+FC=ifort
+#FC=gfortran
 
 #BLAS library name
 #  blas:     standard
@@ -41,6 +42,9 @@ LIBPATH=lib/
 #Project name
 NAME=fort_arrange
 
+#Debug Flags
+#DEBUG=-Dall
+
 #Find OS
 #UNAME=$(shell uname)
 
@@ -57,7 +61,7 @@ ifdef FCOPT
       FCOPT=-O3
     else
       ifeq (${FC},gfortran)
-        FCOPT=-03
+        FCOPT=-O3
     endif
   endif
 endif
@@ -70,7 +74,7 @@ endif
 all: 
 	@echo "Using BLAS library named ${BLAS}"
 	@echo "Compling moddule ${NAME}"
-	${FC} ${FCFLAGS} -c -o ${NAME}.o ${SRC}fort_arrange.f90 -l${BLAS}
+	${FC} ${FCFLAGS} ${DEBUG} -c -o ${NAME}.o ${SRC}fort_arrange.f90 -l${BLAS}
 	@echo "Making library ${NAME}${LIBEXT}"
 	ar rc ${NAME}${LIBEXT} ${NAME}.o
 	@echo "Moving library to ${LIBPATH}"
@@ -79,10 +83,10 @@ all:
 	mv ${NAME}.mod ${INCPATH}${NAME}.mod
 	@echo "Cleaning up"
 	rm "${NAME}.o"
-test_1:
+test_sort:
 	@echo "Building test"
-	${FC} ${FCFLAGS} -o test/src/test_sort_speed_1${EXEEXT} test/src/test_sort_speed_1.f90 -J${INCPATH} -L${LIBPATH} -l${NAME} -l${BLAS}
-	test/src/test_sort_speed_1${EXEEXT}
+	${FC} ${FCFLAGS} ${DEBUG} -o test/src/test_sort${EXEEXT} test/src/test_sort.f90 -I${INCPATH} -L${LIBPATH} -l${NAME} -l${BLAS}
+	test/src/test_sort${EXEEXT}
 clean:
 	rm -f *~
 	rm -f *.o
@@ -90,3 +94,5 @@ clean:
 	rm -f ${SRC}*.o
 	rm -f ${LIBPATH}${NAME}*
 	rm -f ${INCPATH}${NAME}* 
+	rm -f test/src/*.out
+	rm -f test/src/*~
