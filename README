@@ -103,6 +103,10 @@ Unique - subroutine unique
   * Set allocatable vector VEC2 to be a unique sorted list of elements of VEC
         unique(VEC,VEC2)
 
+  * Set allocatable vector VEC2 to be a unique sorted list of elements of VEC
+    and set MAP to be the mapping vector from VEC to VEC2
+        unique(VEC,VEC2,MAP)
+
 Is Unique - function is_unique
 --------------------------------------------------------------------------------
   * Check if all elements of vector VEC are unique.  Returns a logical  value L.
