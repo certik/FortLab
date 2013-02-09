@@ -14,9 +14,6 @@ small lists and a quick sort for larger lists.
 ================================================================================
 Notes
 --------------------------------------------------------------------------------
-Fort Arrange is still in early development and both comments and feedback are 
-warmly welcomed.
-
 The sort algorithm uses a hybrid quick-interchange sort.  Interchange sort is
 used for smaller list and a recursive quick sort is used for larger lists.  I am
 currently test a flat quick sort algorithm.  The default is to use interchange
@@ -27,12 +24,13 @@ first and last element as the pivot.
 Fort Arrange uses BLAS.  If you do not have a BLAS implementation, a non 
 optimized version can be found at www.netlib.org/blas/.  For free optimized
 implementations consider ATLAS (www.math-atlas.sourceforge.net/) or OpenBLAS
-(https://github.com/xianyi/OpenBLAS).  
+(https://github.com/xianyi/OpenBLAS).
 
 Fort Arrange currently supports the following data types:
   * integer
   * real
   * double precision
+
 I have not added complex data types because I do not have much experience 
 working with them in Fortran and therefore do not know how to write efficient
 code for them.  If anyone extends the code to complex data types please consider 
@@ -122,9 +120,7 @@ Short Term
 Test a flat implementation of quick sort to replace the current recursive
 implementation.
 
-Optimize use of BLAS calls to XCOPY.  Currently they are faster than using just
-ifort or gfortran's array copy feature; however, there may be room to optimize
-the calls.
+Add benchmarks of sorting algorithm.
 
 Longer Term
 --------------------------------------------------------------------------------
