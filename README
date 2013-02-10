@@ -10,7 +10,20 @@ into a single library.
 ================================================================================
 Notes
 --------------------------------------------------------------------------------
-FortLab is still in very early development and has not been tested.
+FortLab is still in early development and some components have not been tested.
+
+Comments, feedback, and pull request are warmly welcomed.
+
+FortLab is designed as combined library; however, each module in the FortLab
+project is managed as a seperate sub project with its own make files and
+testing.
+
+Some of the components of FortLab use Fortran 2003/2008 fatures which have not
+yet become commonly adopted by Fortran compilers.  As a result each componet
+module of FortLab is designed as its own library so that users that are using
+a compiler than is not compatable with some of the features used by FortLab can
+use the modules of FortLab which are comparable.  For example the Fort Arrange
+library works while gfortran while the Fort String library does not.
 ================================================================================
 
 ================================================================================
