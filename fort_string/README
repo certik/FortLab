@@ -6,7 +6,7 @@ Summary
 Fort String is a Fortran 2003/2008 module for string manipulations and related
 operations.  Fort String is a component of the FortLab project.  To use Fort
 String you can get the entire FortLab project or just get the Fort String
-module.  Makefiles are provided seperately for fort_string and FortLab.
+module.  Makefiles are provided seperately for Fort String and FortLab.
 
 Fort String uses Fortran 2008 features that have not been widely addopted yet by
 Fortran compilers as a results Fort String does not support gfortran.
