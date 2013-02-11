@@ -49,6 +49,20 @@ index_chars - Find the index to occurrence of any elements of a set of
     and IDX is an allocatable INTEGER vector write the IDX all the positions in
     STR where an element of CHARS occurs.
 
+lower_case - Convert string to lower case
+-------------------------------------------------------------------------------
+  * subroutine lower_case(STR)
+    Where STR is a character(len=N) scalar, convert all upper case characters
+    to lower case characters.
+
+  * subroutine lower_case(STR)
+    Where STR is a character(len=N) vector, convert all upper case characters
+    to lower case characters.
+
+  * subroutine lower_case(STR)
+    Where STR is a character(len=N) matrix, convert all upper case characters
+    to lower case characters.
+
 num2str - Write a number to a string
 --------------------------------------------------------------------------------
   * function num2str(X)
@@ -113,6 +127,20 @@ trimr - Trim trailing blanks
     results into the allocatable character matrix STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of trimr for each of
     the components of STR.
+
+upper_case - Convert string to upper case
+--------------------------------------------------------------------------------
+  * subroutine upper_case(STR)
+    Where STR is a character(len=N) scalar, convert all lower case characters
+    to upper case characters.
+
+  * subroutine upper_case(STR)
+    Where STR is a character(len=N) vector, convert all lower case characters
+    to upper case characters.
+
+  * subroutine upper_case(STR)
+    Where STR is a character(len=N) matrix, convert all lower case characters
+    to upper case characters.
 
 ================================================================================
 

@@ -85,6 +85,20 @@ is_unique - Are the elements of vector unique
   * function is_unique(VEC)
     Return logical which is true when all elements of vector VEC are unique.
 
+lower_case - Convert string to lower case
+-------------------------------------------------------------------------------
+  * subroutine lower_case(STR)
+    Where STR is a character(len=N) scalar, convert all upper case characters
+    to lower case characters.
+
+  * subroutine lower_case(STR)
+    Where STR is a character(len=N) vector, convert all upper case characters
+    to lower case characters.
+
+  * subroutine lower_case(STR)
+    Where STR is a character(len=N) matrix, convert all upper case characters
+    to lower case characters.
+
 num2str - Write a number to a string
 --------------------------------------------------------------------------------
   * function num2str(X)
@@ -195,6 +209,20 @@ unique - Find unique elements of a vector.
   * function unique(VEC,VEC_OUT,MAP)
     Set allocatable vector VECOUT to be a unique sorted list of elements of 
     vector VEC and set map MAP to be the mapping vector from VEC to VEC_OUT.
+
+upper_case - Convert string to upper case
+--------------------------------------------------------------------------------
+  * subroutine upper_case(STR)
+    Where STR is a character(len=N) scalar, convert all lower case characters
+    to upper case characters.
+
+  * subroutine upper_case(STR)
+    Where STR is a character(len=N) vector, convert all lower case characters
+    to upper case characters.
+
+  * subroutine upper_case(STR)
+    Where STR is a character(len=N) matrix, convert all lower case characters
+    to upper case characters.
 
 ================================================================================
 
