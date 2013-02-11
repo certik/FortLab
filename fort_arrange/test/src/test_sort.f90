@@ -1,7 +1,7 @@
 program test_sort
   use fort_arrange
   implicit none
-  integer, parameter :: n = 10000000
+  integer, parameter :: n = 5000000
   integer, allocatable :: x_int(:),y_int(:),map(:)
   real, allocatable :: x_real(:),y_real(:)
   double precision, allocatable :: x_dble(:),y_dble(:)
@@ -222,6 +222,7 @@ program test_sort
   deallocate(x_real,y_real,map)
 
   !Double Precision
+
   allocate(x_dble(n),y_dble(n),map(n))
   x_dble = 1.0D0
   y_dble = x_dble

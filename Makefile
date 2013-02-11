@@ -1,18 +1,14 @@
 #===============================================================================
 #Summary
 #-------------------------------------------------------------------------------
-#This is the make file for the Fort Arrange library.  It is set up for ifort and
-#gfortran on a MacOSX this will be expanded in the future to work with more OSs
-#and compliers.
+#This is the make file for the FortLab library.
 #===============================================================================
 
 #Fortran complier, currently the following compliers are supported by this make
 #file; however, this is not a limitation on the list of compliers the library
 #will work with.
 #  ifort
-#  gfortran
 FC=ifort
-#FC=gfortran
 
 #BLAS library name
 #  blas:     standard
@@ -21,7 +17,7 @@ FC=ifort
 BLAS=blas
 
 #Name
-NAME=fort_arrange
+NAME=FortLab
 
 #Optimization level set this to override the complier default
 FCOPT=-O3
@@ -61,11 +57,16 @@ MAKELIB=1
 
 #Set Fortran flags
 FCFLAGS=${FCOPT} ${FCWARN} ${FCDEBUG} 
+
 all:
-	@echo "${NAME}"
-	@echo "====================================================" 
+	$(MAKE) -C fort_arrange/ FC=${FC} FCFLAGS="${FCFLAGS}" MAKELIB=0
+	mv fort_arrange/${OBJPATH}* ${OBJPATH}
+	mv fort_arrange/${INCPATH}* ${INCPATH} 
+	$(MAKE) -C fort_string/ FC=${FC} FCFLAGS="${FCFLAGS}" MAKELIB=0
+	mv fort_string/${OBJPATH}* ${OBJPATH}
+	mv fort_string/${INCPATH}* ${INCPATH}
 	@echo "Compiling ${NAME}"
-	${FC} ${FCFLAGS} -c -o ${OBJPATH}${NAME}.o ${SRC}${NAME}.f90 -l${BLAS}
+	${FC} ${FCFLAGS} -c -o ${OBJPATH}${NAME}.o ${SRC}${NAME}.f90 ${OBJPATH}*.o -I${INCPATH} #-l${BLAS}
 ifeq (${MAKELIB},1)
 	@echo "Making ${NAME}"
 	ar rc ${NAME}${LIBEXT} ${OBJPATH}${NAME}.o
@@ -74,18 +75,13 @@ ifeq (${MAKELIB},1)
 endif
 	@echo "Moving mod file"
 	mv ${NAME}.mod ${INCPATH}${NAME}.mod
-test_sort:
-	@echo "Building test"
-	${FC} ${FCFLAGS} -o test/exec/test_sort${EXEEXT} test/src/test_sort.f90 -I${INCPATH} -L${LIBPATH} -l${NAME} -l${BLAS}
-	test/exec/test_sort${EXEEXT}
 clean:
-	rm -f *~
 	rm -f *#
-	rm -f ${SRC}*~
-	rm -f ${SRC}*#
+	rm -f *~
+	rm -f ${OBJPATH}*
 	rm -f ${LIBPATH}*
 	rm -f ${INCPATH}*
-	rm -f ${OBJPATH}* 
-	rm -f test/src/*.out
-	rm -f test/src/*~
-	rm -f test/exec/*
+	rm -f ${SRC}*~
+	rm -f ${SRC}*#
+	$(MAKE) -C fort_arrange/ clean
+	$(MAKE) -C fort_string/ clean
