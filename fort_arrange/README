@@ -5,11 +5,11 @@ Summary
 --------------------------------------------------------------------------------
 Fort Arrange is a Fortran module for the arrangement of numeric arrays and
 matrices.  Fort Arrange has been designed to provide a simple and flexible 
-interface to efficient arrangement tools including sorting and perumtation.
+interface to efficient arrangement tools including sorting and permutation.
 
 Fort Arrange is a component of the FortLab project.  To use Fort Arrange you can
 get the entire FortLab project or just get the Fort Arrange module.  Makefiles
-are provided seperately for Fort Arrange and FortLab.
+are provided separately for Fort Arrange and FortLab.
 
 Fort Arrange's core is a hybrid sort algorithm that uses an interchange sort for
 small lists and a quick sort for larger lists.
@@ -62,6 +62,39 @@ and link to a blas library.
 Use
 --------------------------------------------------------------------------------
 
+is_sorted - Check if a vector is sorted
+--------------------------------------------------------------------------------
+  * function is_sorted(VEC)
+    Check if vector VEC is sorted.  Returns integer 0 if VEC is sorted, 
+    otherwise it returns the first index such that VEC(i) < VEC(i - 1).
+
+is_unique - Are the elements of vector unique
+--------------------------------------------------------------------------------
+  * function is_unique(VEC)
+    Return logical which is true when all elements of vector VEC are unique.
+
+permute - Permute vector or matrix
+--------------------------------------------------------------------------------
+  * subroutine permute(MAP,VEC)
+    Permute a vector VEC in place using map MAP.
+  
+  * subroutine permute(MAP,VEC,VEC_OUT)
+    Permute a vector VEC to vector VEC_OUT using map MAP.
+  
+  * subroutine permute(MAP,MAT)
+    Permute a matrix MAT in place using map MAP.
+  
+  * subroutine permute(MAP,MAT,MAT_OUT)
+    Permute a matrix MAT to matrix MAT_OUTT using map MAP.
+  
+set_max_interchange_sort_size - Set Max Interchange Sort Size
+--------------------------------------------------------------------------------
+  * function set_max_interchange_sort_size(N) 
+    Set max interchange sort size to integer N.  This will cause sort to use 
+    interchange sort for all lists less than or equal to N elements in length.
+    Please note that even when a list larger than N is sorted, interchange sort 
+    will be used every time quick sort makes a partition of N elements or less.
+
 sort - Sorting
 --------------------------------------------------------------------------------
   * subroutine sort(VEC)
@@ -76,36 +109,6 @@ sort - Sorting
   * subroutine sort(MAT,K)
     Sort a matrix MAT by the Kth column.
 
-is_sorted - Check if a vector is sorted
---------------------------------------------------------------------------------
-  * function is_sorted(VEC)
-    Check if vector VEC is sorted.  Returns integer 0 if VEC is sorted, 
-    otherwise it returns the first index such that VEC(i) < VEC(i - 1).
-
-
-permute - Permute vector or matrix
---------------------------------------------------------------------------------
-  * subroutine permute(MAP,VEC)
-    Permute a vector VEC inpalce using map MAP.
-  
-  * subroutine permute(MAP,VEC,VEC_OUT)
-    Permute a vector VEC to vector VEC_OUT using map MAP.
-  
-  * subroutine permute(MAP,MAT)
-    Permute a matrix MAT inpalce using map MAP.
-  
-  * subroutine permute(MAP,MAT,MAT_OUT)
-    Permute a matrix MAT to matrix MAT_OUTT using map MAP.
-  
-set_max_interchange_sort_size - Set Max Interchange Sort Size
---------------------------------------------------------------------------------
-  * function set_max_interchange_sort_size(N) 
-    Set max interchange sort size to integer N.  This will cause sort to use 
-    interchange sort for all lists less than or equal to N elements in length.
-    Please note that even when a list larger than N is sorted, interchange sort 
-    will be used every time quick sort makes a partition of N elements or less.
-
-
 unique - Find unique elements of a vector.
 --------------------------------------------------------------------------------
   * function unique(VEC,VEC_OUT)
@@ -115,12 +118,6 @@ unique - Find unique elements of a vector.
   * function unique(VEC,VEC_OUT,MAP)
     Set allocatable vector VECOUT to be a unique sorted list of elements of 
     vector VEC and set map MAP to be the mapping vector from VEC to VEC_OUT.
-        
-
-is_unique - Are the elements of vector unique
---------------------------------------------------------------------------------
-  * function is_unique(VEC)
-    Return logical which is true when all elements of vector VEC are unique.
 
 ================================================================================
 
@@ -137,7 +134,7 @@ Optimize use of BLAS calls to XCOPY.  Currently they are faster than using just
 ifort or gfortran's array copy feature; however, there may be room to optimize
 the calls.
 
-Extend the permute inplace subroutines to work when MAP is shorter than VEC or
+Extend the permute in place subroutines to work when MAP is shorter than VEC or
 MAT, leaving all the other elements un extended.
 
 Longer Term

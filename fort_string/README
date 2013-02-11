@@ -6,9 +6,9 @@ Summary
 Fort String is a Fortran 2003/2008 module for string manipulations and related
 operations.  Fort String is a component of the FortLab project.  To use Fort
 String you can get the entire FortLab project or just get the Fort String
-module.  Makefiles are provided seperately for Fort String and FortLab.
+module.  Makefiles are provided separately for Fort String and FortLab.
 
-Fort String uses Fortran 2008 features that have not been widely addopted yet by
+Fort String uses Fortran 2008 features that have not been widely adopted yet by
 Fortran compilers as a results Fort String does not support gfortran.
 ================================================================================
 
@@ -20,7 +20,7 @@ Fort String is still in early development.
 Comments, feedback, and pull request are warmly welcomed.
 
 Fort String uses allocatable scalars which is a Fortran 2008 feature which has
-not yet been generally addopted by Fortran compilers such as gfortran.
+not yet been generally adopted by Fortran compilers such as gfortran.
 
 Testing has been done using current versions of ifort.
 ================================================================================
@@ -35,19 +35,19 @@ Pending
 Use
 --------------------------------------------------------------------------------
 
-count_chars - Count occurence of any elements of a set of characters in a string
+count_chars - Count occurrence of any elements of a set of characters in a string
 --------------------------------------------------------------------------------
   * function count_chars(STR,CHARS)
     Return the number of times any element of CHARS occurs in STR.
 
 
-index_chars - Find the index to occurence of any elements of a set of characters
-	      in a string
+index_chars - Find the index to occurrence of any elements of a set of
+              characters in a string
 --------------------------------------------------------------------------------
-  * suborutine index_chars(STR,CHARS,IDX)
+  * subroutine index_chars(STR,CHARS,IDX)
     Where STR is a character(len=N) scalar, CHARS is a character(len=M) scalar,
     and IDX is an allocatable INTEGER vector write the IDX all the positions in
-    STR where an element of CHARS occours.
+    STR where an element of CHARS occurs.
 
 num2str - Write a number to a string
 --------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ trimr - Trim trailing blanks
     
   subroutine trimr(STR,STR_OUT)
     Trim trailing blanks from the character(len=N) matrix STR and return the 
-    results into the allocatable character vmatrix STR_OUT.  Length of STR_OUT
+    results into the allocatable character matrix STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of trimr for each of
     the components of STR.
 
@@ -124,7 +124,7 @@ Short Term
 --------------------------------------------------------------------------------
 Add center interface.
 
-Extend num2str interface to vectors and maxtricies.
+Extend num2str interface to vectors and matrices.
 
 Add tests.
 

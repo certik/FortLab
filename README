@@ -15,13 +15,13 @@ FortLab is still in early development and some components have not been tested.
 Comments, feedback, and pull request are warmly welcomed.
 
 FortLab is designed as combined library; however, each module in the FortLab
-project is managed as a seperate sub project with its own make files and
+project is managed as a separate sub project with its own make files and
 testing.
 
-Some of the components of FortLab use Fortran 2003/2008 fatures which have not
-yet become commonly adopted by Fortran compilers.  As a result each componet
+Some of the components of FortLab use Fortran 2003/2008 features which have not
+yet become commonly adopted by Fortran compilers.  As a result each component
 module of FortLab is designed as its own library so that users that are using
-a compiler than is not compatable with some of the features used by FortLab can
+a compiler than is not compatible with some of the features used by FortLab can
 use the modules of FortLab which are comparable.  For example the Fort Arrange
 library works while gfortran while the Fort String library does not.
 ================================================================================
@@ -40,9 +40,162 @@ found in header of the name FortLab.mod.
 ================================================================================
 
 ================================================================================
+Components
+--------------------------------------------------------------------------------
+
+Fort Arrange - Stable development
+--------------------------------------------------------------------------------
+Fort Arrange is a set of tools for arranging vectors and matrices.  Fort Arrange
+is still in development, but is tested regularly.  For more details on the
+status of Fort Arrange see fort_arrange/README.
+
+Fort String - Early development
+--------------------------------------------------------------------------------
+Fort String is a set of string manipulation tools.  Fort String is still in
+early development and many of its components have not been tested.
+
+================================================================================
+
+================================================================================
 Use
 --------------------------------------------------------------------------------
-Pending
+
+count_chars - Count occurrence of any elements of a set of characters in a string
+--------------------------------------------------------------------------------
+  * function count_chars(STR,CHARS)
+    Return the number of times any element of CHARS occurs in STR.
+
+
+index_chars - Find the index to occurrence of any elements of a set of 
+              characters in a string
+--------------------------------------------------------------------------------
+  * subroutine index_chars(STR,CHARS,IDX)
+    Where STR is a character(len=N) scalar, CHARS is a character(len=M) scalar,
+    and IDX is an allocatable INTEGER vector write the IDX all the positions in
+    STR where an element of CHARS occurs.
+
+is_sorted - Check if a vector is sorted
+--------------------------------------------------------------------------------
+  * function is_sorted(VEC)
+    Check if vector VEC is sorted.  Returns integer 0 if VEC is sorted, 
+    otherwise it returns the first index such that VEC(i) < VEC(i - 1).
+
+is_unique - Are the elements of vector unique
+--------------------------------------------------------------------------------
+  * function is_unique(VEC)
+    Return logical which is true when all elements of vector VEC are unique.
+
+num2str - Write a number to a string
+--------------------------------------------------------------------------------
+  * function num2str(X)
+    Write integer, real, or double precision X to a string.
+
+permute - Permute vector or matrix
+--------------------------------------------------------------------------------
+  * subroutine permute(MAP,VEC)
+    Permute a vector VEC in place using map MAP.
+  
+  * subroutine permute(MAP,VEC,VEC_OUT)
+    Permute a vector VEC to vector VEC_OUT using map MAP.
+  
+  * subroutine permute(MAP,MAT)
+    Permute a matrix MAT in place using map MAP.
+  
+  * subroutine permute(MAP,MAT,MAT_OUT)
+    Permute a matrix MAT to matrix MAT_OUTT using map MAP.
+  
+set_max_interchange_sort_size - Set Max Interchange Sort Size
+--------------------------------------------------------------------------------
+  * function set_max_interchange_sort_size(N) 
+    Set max interchange sort size to integer N.  This will cause sort to use 
+    interchange sort for all lists less than or equal to N elements in length.
+    Please note that even when a list larger than N is sorted, interchange sort 
+    will be used every time quick sort makes a partition of N elements or less.
+
+sort - Sorting
+--------------------------------------------------------------------------------
+  * subroutine sort(VEC)
+    Sort vector VEC.
+
+  * subroutine sort(VEC,MAP)
+    Sort vector VEC and also get the map MAP of the sorting.
+
+  * subroutine sort(MAT)
+    Sort a matrix MAT by the first column.
+
+  * subroutine sort(MAT,K)
+    Sort a matrix MAT by the Kth column.
+
+strip - Trim leading and trailing blanks
+--------------------------------------------------------------------------------
+  * subroutine strip(STR,STR_OUT)
+    Trim leading and trailing blanks from the character(len=N) STR and return
+    the result into the allocatable character STR_OUT.
+
+  * subroutine strip(STR,STR_OUT)
+    Trim leadings and trailing blanks from the character(len=N) vector STR and
+    return the results into the allocatable character vector STR_OUT.  Length of
+    STR_OUT will be set to the maximum of the length of the output of strip for
+    each of the components of STR.
+    
+  * subroutine triml(STR,STR_OUT)
+    Trim leading blanks from the character(len=N) vector STR and return the 
+    results into the allocatable character vector STR_OUT.  Length of STR_OUT
+    will be set to the maximum of the length of the output of strip for each of
+    the components of STR.
+
+  * subroutine triml(STR,STR_OUT)
+    Trim leading blanks from the character(len=N) matrix STR and return the 
+    results into the allocatable character matrix STR_OUT.  Length of STR_OUT
+    will be set to the maximum of the length of the output of strip for each of
+    the components of STR.
+
+triml - Trim leading blanks
+--------------------------------------------------------------------------------
+  * subroutine triml(STR,STR_OUT)
+    Trim leading blanks from the character(len=N) STR and return the result into
+    the allocatable character STR_OUT.
+
+  * subroutine triml(STR,STR_OUT)
+    Trim leadings blanks from the character(len=N) vector STR and return the 
+    results into the allocatable character vector STR_OUT.  Length of STR_OUT
+    will be set to the maximum of the length of the output of triml for each of
+    the components of STR.
+    
+  * subroutine triml(STR,STR_OUT)
+    Trim leading blanks from the character(len=N) matrix STR and return the 
+    results into the allocatable character matrix STR_OUT.  Length of STR_OUT
+    will be set to the maximum of the length of the output of triml for each of
+    the components of STR.
+
+trimr - Trim trailing blanks
+--------------------------------------------------------------------------------
+  * subroutine trimr(STR,STR_OUT)
+    Trim trailing blanks from the character(len=N) STR and return the result
+    into the allocatable character STR_OUT.
+
+  subroutine trimr(STR,STR_OUT)
+    Trim trailing blanks from the character(len=N) vector STR and return the 
+    results into the allocatable character vector STR_OUT.  Length of STR_OUT
+    will be set to the maximum of the length of the output of trimr for each of
+    the components of STR.
+    
+  subroutine trimr(STR,STR_OUT)
+    Trim trailing blanks from the character(len=N) matrix STR and return the 
+    results into the allocatable character matrix STR_OUT.  Length of STR_OUT
+    will be set to the maximum of the length of the output of trimr for each of
+    the components of STR.
+
+unique - Find unique elements of a vector.
+--------------------------------------------------------------------------------
+  * function unique(VEC,VEC_OUT)
+    Set allocatable vector VEC_OUT to be a unique sorted list of elements of
+    vector VEC.    
+
+  * function unique(VEC,VEC_OUT,MAP)
+    Set allocatable vector VECOUT to be a unique sorted list of elements of 
+    vector VEC and set map MAP to be the mapping vector from VEC to VEC_OUT.
+
 ================================================================================
 
 ================================================================================
