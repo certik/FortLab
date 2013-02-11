@@ -60,14 +60,15 @@ FCFLAGS=${FCOPT} ${FCWARN} ${FCDEBUG}
 
 all:
 	$(MAKE) -C fort_arrange/ FC=${FC} FCFLAGS="${FCFLAGS}" MAKELIB=0
-	mv fort_arrange/${OBJPATH}* ${OBJPATH}
-	mv fort_arrange/${INCPATH}* ${INCPATH} 
+	mv fort_arrange/${OBJPATH}* temp/${OBJPATH}
+	mv fort_arrange/${INCPATH}* temp/${INCPATH} 
 	$(MAKE) -C fort_string/ FC=${FC} FCFLAGS="${FCFLAGS}" MAKELIB=0
-	mv fort_string/${OBJPATH}* ${OBJPATH}
-	mv fort_string/${INCPATH}* ${INCPATH}
+	mv fort_string/${OBJPATH}* temp/${OBJPATH}
+	mv fort_string/${INCPATH}* temp/${INCPATH}
 	@echo "Compiling ${NAME}"
-	${FC} ${FCFLAGS} -c -o ${OBJPATH}${NAME}.o ${SRC}${NAME}.f90 ${OBJPATH}*.o -I${INCPATH} #-l${BLAS}
-ifeq (${MAKELIB},1)
+	${FC} ${FCFLAGS} -c -o ${OBJPATH}${NAME}.o ${SRC}${NAME}.f90 temp/${OBJPATH}*.o -Itemp/${INCPATH} #-l${BLAS}
+ifeq (${MAKELIB},0)
+else
 	@echo "Making ${NAME}"
 	ar rc ${NAME}${LIBEXT} ${OBJPATH}${NAME}.o
 	@echo "Moving library"
@@ -79,8 +80,10 @@ clean:
 	rm -f *#
 	rm -f *~
 	rm -f ${OBJPATH}*
-	rm -f ${LIBPATH}*
-	rm -f ${INCPATH}*
+	rm -f ${LIBPATH}${LIBPREFIX}${NAME}${LIBEXT}
+	rm -f ${INCPATH}${NAME}.mod
+	rm -f temp/${OBJPATH}*
+	rm -f temp/${INCPATH}*
 	rm -f ${SRC}*~
 	rm -f ${SRC}*#
 	$(MAKE) -C fort_arrange/ clean

@@ -29,7 +29,14 @@ library works while gfortran while the Fort String library does not.
 ================================================================================
 Installation
 --------------------------------------------------------------------------------
-Pending
+A make file is provided to build a static library.  Simply then copy
+lib/libFortLib.a to where you sore libraries and header/FortLib.m to where you
+store module files.  Alternatively when running make set INCPATH to the path to
+where you store mod files and LIBPATH to where you store libraries.
+
+If you do not wish to generate a module set MAKELIB to any value of 01.  An 
+object file will be found in obj of the name FortLab.o and a mod file will be
+found in header of the name FortLab.mod.
 ================================================================================
 
 ================================================================================

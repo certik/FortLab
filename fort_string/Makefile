@@ -59,7 +59,8 @@ all:
 	@echo "===================================================="
 	@echo "Compiling ${NAME}"
 	${FC} ${FCFLAGS} -c -o ${OBJPATH}${NAME}.o ${SRC}${NAME}.f90
-ifeq (${MAKELIB},1)
+ifeq (${MAKELIB},0)
+else
 	@echo "Making ${NAME}"
 	ar rc ${NAME}${LIBEXT} ${OBJPATH}${NAME}.o
 	@echo "Moving library"
