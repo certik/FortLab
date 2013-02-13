@@ -55,6 +55,9 @@ MAKELIB=1
 #Set Fortran flags
 FCFLAGS=${FCOPT} ${FCWARN} ${FCDEBUG} 
 all: 
+	mkdir -p ${LIBPATH}
+	mkdir -p ${INCPATH}
+	mkdir -p ${OBJPATH}
 	@echo "${NAME}"
 	@echo "===================================================="
 	@echo "Compiling ${NAME}"
