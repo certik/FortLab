@@ -14,6 +14,8 @@
 FC=ifort
 #FC=gfortran
 
+CPPC=g++
+
 #BLAS library name
 #  blas:     standard
 #  openblas: for the open blas project
@@ -25,6 +27,7 @@ NAME=fort_arrange
 
 #Optimization level set this to override the complier default
 FCOPT=-O3
+CPPCOPT=-O3
 
 #Library path
 LIBPATH=lib/
@@ -61,7 +64,9 @@ MAKELIB=1
 
 #Set Fortran flags
 FCFLAGS=${FCOPT} ${FCWARN} ${FCDEBUG} 
-all:
+CPPCFLAGS=${CPPCOPT}
+all: build
+build:
 	mkdir -p ${LIBPATH}
 	mkdir -p ${OBJPATH}
 	mkdir -p ${INCPATH}
@@ -79,9 +84,16 @@ endif
 	@echo "Moving mod file"
 	mv ${NAME}.mod ${INCPATH}${NAME}.mod
 test_sort:
+	mkdir -p test/${OBJPATH}
+	mkdir -p text/exec
 	@echo "Building test"
 	${FC} ${FCFLAGS} -o test/exec/test_sort${EXEEXT} test/src/test_sort.f90 -I${INCPATH} -L${LIBPATH} -l${NAME} -l${BLAS}
 	test/exec/test_sort${EXEEXT}
+
+test_c_qsort: build
+	${CPPC} ${CPPCFLAGS} -c -o test/exec/test_c_qsort.o test/${SRC}test_c_qsort.cpp
+	${FC} ${FCGLAGS} -o test/exec/test_c_qsort${EXEEXT} test/${SRC}test_c_qsort.f90 test/exec/test_c_qsort.o -L${LIBPATH} -I${INCPATH} -lstdc++ -l${NAME} -l${BLAS}
+	test/exec/test_c_qsort${EXEEXT}
 clean:
 	rm -f *~
 	rm -f *#
