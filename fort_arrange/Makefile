@@ -83,14 +83,15 @@ else
 endif
 	@echo "Moving mod file"
 	mv ${NAME}.mod ${INCPATH}${NAME}.mod
-test_sort:
+test: build test_sort test_c_qsort
 	mkdir -p test/${OBJPATH}
 	mkdir -p text/exec
+test_sort:
 	@echo "Building test"
 	${FC} ${FCFLAGS} -o test/exec/test_sort${EXEEXT} test/src/test_sort.f90 -I${INCPATH} -L${LIBPATH} -l${NAME} -l${BLAS}
 	test/exec/test_sort${EXEEXT}
 
-test_c_qsort: build
+test_c_qsort:
 	${CPPC} ${CPPCFLAGS} -c -o test/exec/test_c_qsort.o test/${SRC}test_c_qsort.cpp
 	${FC} ${FCGLAGS} -o test/exec/test_c_qsort${EXEEXT} test/${SRC}test_c_qsort.f90 test/exec/test_c_qsort.o -L${LIBPATH} -I${INCPATH} -lstdc++ -l${NAME} -l${BLAS}
 	test/exec/test_c_qsort${EXEEXT}
