@@ -30,8 +30,15 @@ program main
   real :: t0,t1
   integer :: i
 
-  print '("Testing fort_arrange sort against C qsort")'
-  print '("Number of elements ",I10)',N
+
+  print '(/,"============================================================")'
+  print '("    Test Fort Arrange sort against C qsort on ",I8," elements")',n
+  print '("============================================================")'
+
+
+  print '(/,"============================================================")'
+  print '("    Test Sort of Random Lists")'
+  print '("============================================================")'
   
   print '("Integer")'
   allocate(x_int(n),y_int(n))

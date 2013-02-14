@@ -8,6 +8,12 @@ program test_sort
   real :: t0,t1,x
   integer :: i
   character(len=80) :: time,passP
+
+  print '(/,"============================================================")'
+  print '("    Test Sort of ",I8, " elements")',n
+  print '("============================================================")'
+
+
   
   print '(/,"============================================================")'
   print '("    Test Sort of Random Lists")'
