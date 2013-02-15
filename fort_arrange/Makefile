@@ -70,6 +70,8 @@ build:
 	mkdir -p ${LIBPATH}
 	mkdir -p ${OBJPATH}
 	mkdir -p ${INCPATH}
+	mkdir -p test/${OBJPATH}
+	mkdir -p test/exec
 	@echo "${NAME}"
 	@echo "====================================================" 
 	@echo "Compiling ${NAME}"
@@ -84,8 +86,7 @@ endif
 	@echo "Moving mod file"
 	mv ${NAME}.mod ${INCPATH}${NAME}.mod
 test: build test_sort test_c_qsort
-	mkdir -p test/${OBJPATH}
-	mkdir -p text/exec
+
 test_sort:
 	@echo "Building test"
 	${FC} ${FCFLAGS} -o test/exec/test_sort${EXEEXT} test/src/test_sort.f90 -I${INCPATH} -L${LIBPATH} -l${NAME} -l${BLAS}
