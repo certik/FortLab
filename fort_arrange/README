@@ -116,7 +116,7 @@ unique - Find unique elements of a vector.
     vector VEC.    
 
   * function unique(VEC,VEC_OUT,MAP)
-    Set allocatable vector VECOUT to be a unique sorted list of elements of 
+    Set allocatable vector VEC_OUT to be a unique sorted list of elements of 
     vector VEC and set map MAP to be the mapping vector from VEC to VEC_OUT.
 
 ================================================================================
@@ -127,9 +127,6 @@ Future
 
 Short Term
 --------------------------------------------------------------------------------
-Test a flat implementation of quick sort to replace the current recursive
-implementation.
-
 Optimize use of BLAS calls to XCOPY.  Currently they are faster than using just
 ifort or gfortran's array copy feature; however, there may be room to optimize
 the calls.
