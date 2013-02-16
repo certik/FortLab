@@ -21,11 +21,10 @@ Notes
 Comments, feedback, and pull request are warmly welcomed.
 
 The sort algorithm uses a hybrid quick-interchange sort.  Interchange sort is
-used for smaller list and a recursive quick sort is used for larger lists.  I am
-currently test a flat quick sort algorithm.  The default is to use interchange
-sort for any list of 20 or less elements.  This threshold can be set with the
-subroutine set_max_interchange_sort_size.  The quick sort uses the mean of the
-first and last element as the pivot.  
+used for smaller list and a non recursive quick sort is used for larger lists.
+The default is to use interchange sort for any list of 20 or less elements.
+This threshold can be set with the subroutine set_max_interchange_sort_size.
+The quick sort uses the mean of the first and last element as the pivot.  
   
 Fort Arrange uses BLAS.  If you do not have a BLAS implementation, a non 
 optimized version can be found at www.netlib.org/blas/.  For free optimized
@@ -33,9 +32,9 @@ implementations consider ATLAS (www.math-atlas.sourceforge.net/) or OpenBLAS
 (https://github.com/xianyi/OpenBLAS).  
 
 Fort Arrange currently supports the following data types:
-  * integer
-  * real
-  * double precision
+  - integer
+  - real
+  - double precision
 I have not added complex data types because I do not have much experience 
 working with them in Fortran and therefore do not know how to write efficient
 code for them.  If anyone extends the code to complex data types please consider 
@@ -64,32 +63,32 @@ Use
 
 is_sorted - Check if a vector is sorted
 --------------------------------------------------------------------------------
-  * function is_sorted(VEC)
+  - function is_sorted(VEC)
     Check if vector VEC is sorted.  Returns integer 0 if VEC is sorted, 
     otherwise it returns the first index such that VEC(i) < VEC(i - 1).
 
 is_unique - Are the elements of vector unique
 --------------------------------------------------------------------------------
-  * function is_unique(VEC)
+  - function is_unique(VEC)
     Return logical which is true when all elements of vector VEC are unique.
 
 permute - Permute vector or matrix
 --------------------------------------------------------------------------------
-  * subroutine permute(MAP,VEC)
+  - subroutine permute(MAP,VEC)
     Permute a vector VEC in place using map MAP.
   
-  * subroutine permute(MAP,VEC,VEC_OUT)
+  - subroutine permute(MAP,VEC,VEC_OUT)
     Permute a vector VEC to vector VEC_OUT using map MAP.
   
-  * subroutine permute(MAP,MAT)
+  - subroutine permute(MAP,MAT)
     Permute a matrix MAT in place using map MAP.
   
-  * subroutine permute(MAP,MAT,MAT_OUT)
+  - subroutine permute(MAP,MAT,MAT_OUT)
     Permute a matrix MAT to matrix MAT_OUTT using map MAP.
   
 set_max_interchange_sort_size - Set Max Interchange Sort Size
 --------------------------------------------------------------------------------
-  * function set_max_interchange_sort_size(N) 
+  - function set_max_interchange_sort_size(N) 
     Set max interchange sort size to integer N.  This will cause sort to use 
     interchange sort for all lists less than or equal to N elements in length.
     Please note that even when a list larger than N is sorted, interchange sort 
@@ -97,25 +96,25 @@ set_max_interchange_sort_size - Set Max Interchange Sort Size
 
 sort - Sorting
 --------------------------------------------------------------------------------
-  * subroutine sort(VEC)
+  - subroutine sort(VEC)
     Sort vector VEC.
 
-  * subroutine sort(VEC,MAP)
+  - subroutine sort(VEC,MAP)
     Sort vector VEC and also get the map MAP of the sorting.
 
-  * subroutine sort(MAT)
+  - subroutine sort(MAT)
     Sort a matrix MAT by the first column.
 
-  * subroutine sort(MAT,K)
+  - subroutine sort(MAT,K)
     Sort a matrix MAT by the Kth column.
 
 unique - Find unique elements of a vector.
 --------------------------------------------------------------------------------
-  * function unique(VEC,VEC_OUT)
+  - function unique(VEC,VEC_OUT)
     Set allocatable vector VEC_OUT to be a unique sorted list of elements of
     vector VEC.    
 
-  * function unique(VEC,VEC_OUT,MAP)
+  - function unique(VEC,VEC_OUT,MAP)
     Set allocatable vector VEC_OUT to be a unique sorted list of elements of 
     vector VEC and set map MAP to be the mapping vector from VEC to VEC_OUT.
 

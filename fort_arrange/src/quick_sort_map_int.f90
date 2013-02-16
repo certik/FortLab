@@ -1,53 +1,50 @@
-pure recursive subroutine quick_sort_map_int(vec,map)
+pure subroutine quick_sort_map_int(vec,map)
   integer, intent(in out) :: vec(:)
   integer, intent(in out) :: map(:)
-  integer :: i,j
+  integer, parameter :: levels = 300
+  integer :: i,left,right,l_bound(levels),u_bound(levels)
   integer :: pivot
 
-  !Use mean of first and last to avoid n*n behavior with sorted lists
-  pivot = (vec(1) + vec(size(vec))) / 2
-  
-  !Find i and j on the wrong side of the pivot and swap
-  i = 0
-  j = size(vec) + 1
-  do
-     do
-        i = i + 1
-        if (vec(i) >= pivot) exit
-     end do
-     do 
-        j = j - 1
-        if (vec(j) <= pivot) exit
-     end do
-
-     if (i < j) then
-        call swap(vec(i),vec(j))
-        call swap(map(i),map(j))
-     elseif (i == j) then
-        if (j == 1) then
-           i = i + 1
-        else
-           j = j - 1
-        end if        
-        exit
+  l_bound(1) = 1
+  u_bound(1) = size(vec)
+  i = 1
+  do while(i >= 1)
+     left = l_bound(i)
+     right = u_bound(i)
+     if (right - left < max_interchange_sort_size) then
+        if (left < right) call interchange_sort(vec(left:right),map(left:right))
+        i = i - 1
      else
-        exit
+        pivot = (vec(left) + vec(right)) / 2
+        left = left - 1
+        right = right + 1
+        do
+           do
+              left = left + 1
+              if (vec(left) >= pivot) exit
+           end do
+           do
+              right = right - 1
+              if (vec(right) <= pivot) exit
+           end do
+           if (left < right) then
+              call swap(vec(left),vec(right))
+              call swap(map(left),map(right))
+           elseif(left == right) then
+              if (left == l_bound(i)) then
+                 left = left + 1
+              else
+                 right = right - 1
+              end if
+              exit
+           else
+              exit
+           end if
+           end do
+           u_bound(i + 1) = u_bound(i)
+           l_bound(i + 1) = left
+           u_bound(i) = right
+           i = i + 1
      end if
   end do
-
-  !Run quick or interchange sort
-  if (j > 1) then
-     if (max_interchange_sort_size < j) then
-        call quick_sort(vec(:j),map(:j))
-     else
-        call interchange_sort(vec(:j),map(:j))
-     end if
-  end if  
-  if (i < size(vec)) then
-     if (max_interchange_sort_size < size(vec) - i + 1) then
-        call quick_sort(vec(i:),map(i:))
-     else
-        call interchange_sort(vec(i:),map(i:))
-     end if
-  end if
 end subroutine quick_sort_map_int

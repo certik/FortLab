@@ -17,7 +17,7 @@ program test_sort
   
   print '(/,"============================================================")'
   print '("    Test Sort of Random Lists")'
-  print '("============================================================")'
+  print '("------------------------------------------------------------")'
 
   !Integer
   allocate(x_int(n))
@@ -69,11 +69,12 @@ program test_sort
   write(time,*) t1-t0
   print '("Double Precision ",A,"sec ",A)', trim(time), trim(passP)
   deallocate(x_dble)
+  print '("============================================================",/)'
 
   !Identical Lists
   print '(/,"============================================================")'
   print '("    Test Sort of Identical Lits")'
-  print '("============================================================")'
+  print '("------------------------------------------------------------")'
 
   !Integer
   allocate(x_int(n))
@@ -122,11 +123,12 @@ program test_sort
   write(time,*) t1-t0
   print '("Double Precision ",A,"sec ",A)', trim(time), trim(passP)
   deallocate(x_dble)
+  print '("============================================================",/)'
 
   !Test Sort Map on Random List
   print '(/,"============================================================")'
   print '("    Test Sort Map of Random Lists")'
-  print '("============================================================")'
+  print '("------------------------------------------------------------")'
 
   !Integer
   allocate(x_int(n),y_int(n),map(n))
@@ -184,12 +186,12 @@ program test_sort
   write(time,*) t1-t0
   print '("Double Precision ",A,"sec ",A)', trim(time), trim(passP)
   deallocate(x_dble,y_dble,map)
-
+  print '("============================================================",/)'
 
   !Test Sort Map on Random List
   print '(/,"============================================================")'
   print '("    Test Sort Map of Indentical Lists")'
-  print '("============================================================")'
+  print '("------------------------------------------------------------")'
 
   !Integer
   allocate(x_int(n),y_int(n),map(n))
@@ -245,5 +247,5 @@ program test_sort
   write(time,*) t1-t0
   print '("Double Precision ",A,"sec ",A)', trim(time), trim(passP)
   deallocate(x_dble,y_dble,map)
-
+  print '("============================================================",/)'
 end program test_sort

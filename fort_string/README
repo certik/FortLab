@@ -37,56 +37,56 @@ Use
 
 count_chars - Count occurrence of any elements of a set of characters in a string
 --------------------------------------------------------------------------------
-  * function count_chars(STR,CHARS)
+  - function count_chars(STR,CHARS)
     Return the number of times any element of CHARS occurs in STR.
 
 
 index_chars - Find the index to occurrence of any elements of a set of
               characters in a string
 --------------------------------------------------------------------------------
-  * subroutine index_chars(STR,CHARS,IDX)
+  - subroutine index_chars(STR,CHARS,IDX)
     Where STR is a character(len=N) scalar, CHARS is a character(len=M) scalar,
     and IDX is an allocatable INTEGER vector write the IDX all the positions in
     STR where an element of CHARS occurs.
 
 lower_case - Convert string to lower case
 -------------------------------------------------------------------------------
-  * subroutine lower_case(STR)
+  - subroutine lower_case(STR)
     Where STR is a character(len=N) scalar, convert all upper case characters
     to lower case characters.
 
-  * subroutine lower_case(STR)
+  - subroutine lower_case(STR)
     Where STR is a character(len=N) vector, convert all upper case characters
     to lower case characters.
 
-  * subroutine lower_case(STR)
+  - subroutine lower_case(STR)
     Where STR is a character(len=N) matrix, convert all upper case characters
     to lower case characters.
 
 num2str - Write a number to a string
 --------------------------------------------------------------------------------
-  * function num2str(X)
+  - function num2str(X)
     Write integer, real, or double precision X to a string.
 
 strip - Trim leading and trailing blanks
 --------------------------------------------------------------------------------
-  * subroutine strip(STR,STR_OUT)
+  - subroutine strip(STR,STR_OUT)
     Trim leading and trailing blanks from the character(len=N) STR and return
     the result into the allocatable character STR_OUT.
 
-  * subroutine strip(STR,STR_OUT)
+  - subroutine strip(STR,STR_OUT)
     Trim leadings and trailing blanks from the character(len=N) vector STR and
     return the results into the allocatable character vector STR_OUT.  Length of
     STR_OUT will be set to the maximum of the length of the output of strip for
     each of the components of STR.
     
-  * subroutine triml(STR,STR_OUT)
+  - subroutine triml(STR,STR_OUT)
     Trim leading blanks from the character(len=N) vector STR and return the 
     results into the allocatable character vector STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of strip for each of
     the components of STR.
 
-  * subroutine triml(STR,STR_OUT)
+  - subroutine triml(STR,STR_OUT)
     Trim leading blanks from the character(len=N) matrix STR and return the 
     results into the allocatable character matrix STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of strip for each of
@@ -94,17 +94,17 @@ strip - Trim leading and trailing blanks
 
 triml - Trim leading blanks
 --------------------------------------------------------------------------------
-  * subroutine triml(STR,STR_OUT)
+  - subroutine triml(STR,STR_OUT)
     Trim leading blanks from the character(len=N) STR and return the result into
     the allocatable character STR_OUT.
 
-  * subroutine triml(STR,STR_OUT)
+  - subroutine triml(STR,STR_OUT)
     Trim leadings blanks from the character(len=N) vector STR and return the 
     results into the allocatable character vector STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of triml for each of
     the components of STR.
     
-  * subroutine triml(STR,STR_OUT)
+  - subroutine triml(STR,STR_OUT)
     Trim leading blanks from the character(len=N) matrix STR and return the 
     results into the allocatable character matrix STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of triml for each of
@@ -112,17 +112,17 @@ triml - Trim leading blanks
 
 trimr - Trim trailing blanks
 --------------------------------------------------------------------------------
-  * subroutine trimr(STR,STR_OUT)
+  - subroutine trimr(STR,STR_OUT)
     Trim trailing blanks from the character(len=N) STR and return the result
     into the allocatable character STR_OUT.
 
-  subroutine trimr(STR,STR_OUT)
+  - subroutine trimr(STR,STR_OUT)
     Trim trailing blanks from the character(len=N) vector STR and return the 
     results into the allocatable character vector STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of trimr for each of
     the components of STR.
     
-  subroutine trimr(STR,STR_OUT)
+  - subroutine trimr(STR,STR_OUT)
     Trim trailing blanks from the character(len=N) matrix STR and return the 
     results into the allocatable character matrix STR_OUT.  Length of STR_OUT
     will be set to the maximum of the length of the output of trimr for each of
@@ -130,15 +130,15 @@ trimr - Trim trailing blanks
 
 upper_case - Convert string to upper case
 --------------------------------------------------------------------------------
-  * subroutine upper_case(STR)
+  - subroutine upper_case(STR)
     Where STR is a character(len=N) scalar, convert all lower case characters
     to upper case characters.
 
-  * subroutine upper_case(STR)
+  - subroutine upper_case(STR)
     Where STR is a character(len=N) vector, convert all lower case characters
     to upper case characters.
 
-  * subroutine upper_case(STR)
+  - subroutine upper_case(STR)
     Where STR is a character(len=N) matrix, convert all lower case characters
     to upper case characters.
 
