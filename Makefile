@@ -73,7 +73,7 @@ all:
 ifeq (${MAKELIB},0)
 else
 	@echo "Making ${NAME}"
-	ar rc ${NAME}${LIBEXT} ${OBJPATH}${NAME}.o
+	ar rc ${NAME}${LIBEXT} ${OBJPATH}*.o ${INCPATH}*.mod
 	@echo "Moving library"
 	mv ${NAME}${LIBEXT} ${LIBPATH}${LIBPREFIX}${NAME}${LIBEXT}	
 endif
