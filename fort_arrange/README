@@ -133,6 +133,8 @@ the calls.
 Extend the permute in place subroutines to work when MAP is shorter than VEC or
 MAT, leaving all the other elements un extended.
 
+Consider adding tuning for max_interchange_sort_size
+
 Longer Term
 --------------------------------------------------------------------------------
 Allow multi column matrix sorts.
