@@ -228,6 +228,13 @@ upper_case - Convert string to upper case
 
 ================================================================================
 Future
+
+Short Term
 --------------------------------------------------------------------------------
-Pending
+Consider adding a utility library with interfaces such as swap and a front end
+to allocate that will check for errors
+
+Convert more interfaces to being elemental
+
+Add an io library
 ================================================================================
