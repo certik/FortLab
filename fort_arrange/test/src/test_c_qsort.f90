@@ -3,10 +3,11 @@ program main
   use fort_arrange
   implicit none
   interface
-     subroutine c_qsort_int (n,x) bind(c)
+     subroutine c_qsort_int (n,x,t) bind(c)
        use iso_c_binding
        integer (c_int), VALUE :: n
        integer (c_int) :: x(*)
+       integer (c_int) :: t
      end subroutine c_qsort_int
      subroutine c_qsort_real (n,x) bind(c)
        use iso_c_binding
@@ -27,6 +28,7 @@ program main
   real(c_float), allocatable :: y_real(:)
   double precision, allocatable :: x_dble(:)
   real(c_double), allocatable :: y_dble(:)
+  integer(c_int) :: t
   real :: t0,t1
   integer :: i
 
@@ -38,20 +40,19 @@ program main
 
   print '(/,"============================================================")'
   print '("    Test Sort of Random Lists")'
-  print '("============================================================")'
-  
-  print '("Integer")'
+  print '("------------------------------------------------------------")'
+  print '("Time (sec)         C qsort  Fort Arrange")' 
   allocate(x_int(n),y_int(n))
   do i = 1,n
      call random_number(t0)
      x_int(i) = int(t0 * 10000)
   end do
   y_int = x_int
-  call c_qsort_int(n,y_int)
+  call c_qsort_int(n,y_int,t)
   call cpu_time(t0)
   call sort(x_int)
   call cpu_time(t1)
-  print '("Fort Arrange ",F6.2," seconds")',t1 - t0
+  print '("Integer         ",I10,"    ",F10.2)',t,t1 - t0 
   deallocate(x_int,y_int)
 
   print '("Real")'
@@ -62,7 +63,7 @@ program main
   call cpu_time(t0)
   call sort(x_real)
   call cpu_time(t1)
-  print '("Fort Arrange ",F6.2," seconds")',t1 - t0
+  print '("Fort Arrange ",F10.2," seconds")',t1 - t0
   deallocate(x_real,y_real)
 
   print '("Double Precision")'
@@ -75,10 +76,11 @@ program main
   call cpu_time(t1)
   print '("Fort Arrange ",F6.2," seconds")',t1 - t0
   deallocate(x_dble,y_dble)
+  print '("============================================================",/)'
 
   print '(/,"============================================================")'
   print '("    Test Sort of Sorted Lists")'
-  print '("============================================================")'
+  print '("------------------------------------------------------------")'
   
   print '("Integer")'
   allocate(x_int(n),y_int(n))
@@ -86,7 +88,7 @@ program main
      x_int(i) = i
   end do
   y_int = x_int
-  call c_qsort_int(n,y_int)
+  call c_qsort_int(n,y_int,t)
   call cpu_time(t0)
   call sort(x_int)
   call cpu_time(t1)
@@ -118,16 +120,17 @@ program main
   call cpu_time(t1)
   print '("Fort Arrange ",F6.2," seconds")',t1 - t0
   deallocate(x_dble,y_dble)
+  print '("============================================================",/)'
 
-print '(/,"============================================================")'
+  print '(/,"============================================================")'
   print '("    Test Sort of Identical Lists")'
-  print '("============================================================")'
+  print '("------------------------------------------------------------")'
   
   print '("Integer")'
   allocate(x_int(n),y_int(n))
   x_int = 1
   y_int = x_int
-  call c_qsort_int(n,y_int)
+  call c_qsort_int(n,y_int,t)
   call cpu_time(t0)
   call sort(x_int)
   call cpu_time(t1)
@@ -155,4 +158,5 @@ print '(/,"============================================================")'
   call cpu_time(t1)
   print '("Fort Arrange ",F6.2," seconds")',t1 - t0
   deallocate(x_dble,y_dble)
+  print '("============================================================",/)'
 end program main

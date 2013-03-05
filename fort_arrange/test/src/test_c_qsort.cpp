@@ -2,10 +2,11 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <cstdio>
 
 extern "C"
 {
-  void c_qsort_int (int n,int x[]);
+  void c_qsort_int (int n,int x[],int t);
   void c_qsort_real (int n,float x[]);
   void c_qsort_dble (int n,double x[]);
 }
@@ -29,13 +30,15 @@ int compare_dble (const void *a, const void *b)
   return 0;
 }
 
-void c_qsort_int (int n, int x[]){
+void c_qsort_int (int n, int x[], int t){
   time_t t0;
   time_t t1;
   t0 = time(NULL);
   std::qsort(x,n,sizeof(float),compare_int);
   t1 = time(NULL);
-  std::cout << "C qsort        " << difftime(t1,t0) << " seconds" << std::endl;
+
+  t = std::difftime(t1,t0);
+  std::cout << t << std::endl;
 }
 
 void c_qsort_real (int n, float x[]){

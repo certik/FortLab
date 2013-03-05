@@ -94,7 +94,7 @@ test_sort:
 
 test_c_qsort:
 	${CPPC} ${CPPCFLAGS} -c -o test/exec/test_c_qsort.o test/${SRC}test_c_qsort.cpp
-	${FC} ${FCGLAGS} -o test/exec/test_c_qsort${EXEEXT} test/${SRC}test_c_qsort.f90 test/exec/test_c_qsort.o -L${LIBPATH} -I${INCPATH} -lstdc++ -l${NAME} -l${BLAS}
+	${FC} ${FCFLAGS} -o test/exec/test_c_qsort${EXEEXT} test/${SRC}test_c_qsort.f90 test/exec/test_c_qsort.o -L${LIBPATH} -I${INCPATH} -lstdc++ -l${NAME} -l${BLAS}
 	test/exec/test_c_qsort${EXEEXT}
 clean:
 	rm -f *~
